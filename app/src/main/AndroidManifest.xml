@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cokerj.collegecompanion">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CollegeCompanion">
+        <activity
+            android:name=".UI.AddCourse"
+            android:label="Add Course"
+            android:parentActivityName=".UI.TermDetailsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.AddTerm"
+            android:exported="false"
+            android:label="Add Term"
+            android:parentActivityName=".UI.HomeScreen" />
+        <activity
+            android:name=".UI.AssessmentDetailsScreen"
+            android:parentActivityName=".UI.CourseDetailsScreen"
+            android:label="Assessment Title"
+            android:exported="false" />
+        <activity
+            android:name=".UI.CourseDetailsScreen"
+            android:label="Course Title"
+            android:parentActivityName=".UI.TermDetailsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.TermDetailsScreen"
+            android:exported="false"
+            android:label="Term Title"
+            android:parentActivityName=".UI.HomeScreen" />
+        <activity
+            android:name=".UI.AssessmentsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.CoursesScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.TermsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.HomeScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
