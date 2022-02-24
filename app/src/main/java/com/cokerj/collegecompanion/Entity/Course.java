@@ -3,18 +3,21 @@ package com.cokerj.collegecompanion.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.cokerj.collegecompanion.Database.Converters;
 
 import java.util.Date;
 import java.util.List;
-
+@TypeConverters({Converters.class})
 @Entity(tableName = "courses")
 public class Course {
+
     @PrimaryKey(autoGenerate = true)
     private int couresId;
     private String name;
     private Date startDate;
     private Date endDate;
-    private List<String> notes;
     private String instructorName;
     private String instructorEmail;
     private String instructorPhone;
@@ -25,6 +28,10 @@ public class Course {
                 "name='" + name + '\'' +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    public void setCouresId(int couresId) {
+        this.couresId = couresId;
     }
 
     public String getStatus() {
@@ -79,14 +86,6 @@ public class Course {
         this.endDate = endDate;
     }
 
-    public void setNotes(List<String> notes) {
-        this.notes = notes;
-    }
-
-    public void addNote(String note){
-        this.notes.add(note);
-    }
-
     public int getCouresId() {
         return couresId;
     }
@@ -103,7 +102,4 @@ public class Course {
         return endDate;
     }
 
-    public List<String> getNotes() {
-        return notes;
-    }
 }

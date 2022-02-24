@@ -2,11 +2,15 @@ package com.cokerj.collegecompanion.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.cokerj.collegecompanion.Database.Converters;
 
 import java.util.Date;
-
+@TypeConverters({Converters.class})
 @Entity(tableName = "terms")
 public class Term {
+
     @PrimaryKey(autoGenerate = true)
     private int termId;
     private String termTitle;
@@ -17,6 +21,10 @@ public class Term {
         this.termTitle = termTitle;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public void setTermId(int termId) {
+        this.termId = termId;
     }
 
     public void setTermTitle(String termTitle) {

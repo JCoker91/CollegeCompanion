@@ -2,11 +2,16 @@ package com.cokerj.collegecompanion.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+
+import com.cokerj.collegecompanion.Database.Converters;
 
 import java.util.Date;
 
 
 
+@TypeConverters({Converters.class})
 @Entity(tableName = "assessments")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
@@ -16,6 +21,7 @@ public class Assessment {
     private Date endDate;
     private String type;
 
+
     @Override
     public String toString() {
         return "Assessment{" +
@@ -23,6 +29,11 @@ public class Assessment {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+    public void setAssessment_id(int assessment_id) {
+        this.assessment_id = assessment_id;
+    }
+
 
     public void setName(String name) {
         this.name = name;
