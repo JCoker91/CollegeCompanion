@@ -6,6 +6,7 @@ import androidx.room.TypeConverters;
 
 import com.cokerj.collegecompanion.Database.Converters;
 
+import java.time.LocalDate;
 import java.util.Date;
 @TypeConverters({Converters.class})
 @Entity(tableName = "terms")
@@ -14,10 +15,10 @@ public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termId;
     private String termTitle;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Term(String termTitle, Date startDate, Date endDate) {
+    public Term(String termTitle, LocalDate startDate, LocalDate endDate) {
         this.termTitle = termTitle;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -31,7 +32,7 @@ public class Term {
         this.termTitle = termTitle;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
@@ -44,7 +45,7 @@ public class Term {
                 '}';
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -56,11 +57,11 @@ public class Term {
         return termTitle;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 }

@@ -7,6 +7,7 @@ import androidx.room.TypeConverters;
 
 import com.cokerj.collegecompanion.Database.Converters;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -17,8 +18,8 @@ public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessment_id;
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String type;
 
 
@@ -39,11 +40,11 @@ public class Assessment {
         this.name = name;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -59,11 +60,11 @@ public class Assessment {
         return name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -71,7 +72,7 @@ public class Assessment {
         return type;
     }
 
-    public Assessment(String name, Date startDate, Date endDate, String type) {
+    public Assessment(String name, LocalDate startDate, LocalDate endDate, String type) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

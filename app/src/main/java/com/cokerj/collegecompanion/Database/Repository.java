@@ -31,4 +31,27 @@ public class Repository {
         mCourseDAO = db.courseDAO();
     }
 
+    public void insert(Term term){
+        databaseExecutor.execute(()->{
+            mTermDAO.insert(term);
+        });
+        try{
+            Thread.sleep(1000);;
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public List<Term> getAllTerms(){
+        databaseExecutor.execute(()->{
+            mAllTerms = mTermDAO.getAllTerms();
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mAllTerms;
+    }
+
 }
