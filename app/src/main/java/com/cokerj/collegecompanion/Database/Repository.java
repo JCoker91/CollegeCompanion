@@ -40,6 +40,12 @@ public class Repository {
         });
     }
 
+    public void insert(Course course){
+        databaseExecutor.execute(()->{
+            mCourseDAO.insert(course);
+        });
+    }
+
     public void update(Term term){
         databaseExecutor.execute(()->{
             mTermDAO.update(term);

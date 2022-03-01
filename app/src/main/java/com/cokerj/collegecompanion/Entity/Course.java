@@ -36,6 +36,17 @@ public class Course {
                 '}';
     }
 
+    public Course(int termId, String name, LocalDate startDate, LocalDate endDate, String instructorName, String instructorEmail, String instructorPhone, String status) {
+        this.termId = termId;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.instructorName = instructorName;
+        this.instructorEmail = instructorEmail;
+        this.instructorPhone = instructorPhone;
+        this.status = status;
+    }
+
     public int getTermId() {
         return termId;
     }
@@ -82,11 +93,7 @@ public class Course {
         this.instructorPhone = instructorPhone;
     }
 
-    public Course(String name, LocalDate startDate, LocalDate endDate) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+
 
     public void setName(String name) {
         this.name = name;
