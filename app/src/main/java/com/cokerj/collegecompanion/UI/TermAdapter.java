@@ -17,6 +17,7 @@ import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder> {
@@ -36,11 +37,13 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     final Term current = mTerms.get(position);
+                    int courseCount = mRepo.getCourseCount(current.getTermId());
                     Intent intent = new Intent(context, TermDetailsScreen.class);
                     intent.putExtra("id", current.getTermId());
                     intent.putExtra("name", current.getTermTitle());
                     intent.putExtra("startDate", current.getStartDate());
                     intent.putExtra("endDate", current.getEndDate());
+                    intent.putExtra("courseCount", courseCount);
                     context.startActivity(intent);
                 }
             });
@@ -68,8 +71,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             Term current = mTerms.get(position);
             int courseCount = mRepo.getCourseCount(current.getTermId());
             String title = current.getTermTitle();
-            String startDate = current.getStartDate().toString();
-            String endDate = current.getEndDate().toString();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+            String startDate = current.getStartDate().format(formatter).toString();
+            String endDate = current.getEndDate().format(formatter).toString();
             holder.startDate.setText(startDate);
             holder.endDate.setText(endDate);
             holder.termTitle.setText(title);

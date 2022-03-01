@@ -20,25 +20,32 @@ import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
+import org.w3c.dom.Text;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class AddTerm extends AppCompatActivity {
+public class EditTerm extends AppCompatActivity {
     DatePickerDialog picker;
-    EditText startDateText;
-    EditText endDateText;
-    EditText termTitle;
+    int termId;
+    int courseCount;
+    Term current;
     Repository repo;
+    EditText termTitleView;
+    EditText termStartDateView;
+    EditText termEndDateView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_term);
+        setContentView(R.layout.activity_edit_term);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         repo = new Repository(getApplication());
-        termTitle = findViewById(R.id.inputTermTitle);
-
-        termTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        termId = getIntent().getIntExtra("termId", 0);
+        current = repo.getTermById(termId);
+        termTitleView = findViewById(R.id.editTermTitle);
+        termTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
@@ -47,47 +54,51 @@ public class AddTerm extends AppCompatActivity {
                 }
             }
         });
-        startDateText = findViewById(R.id.inputTermStartDate);
-        endDateText = findViewById(R.id.inputTermEndDate);
-        startDateText.setInputType(InputType.TYPE_NULL);
-        endDateText.setInputType(InputType.TYPE_NULL);
-        endDateText.setOnClickListener(new View.OnClickListener(){
+        termStartDateView = findViewById(R.id.editTermStartDate);
+        termEndDateView = findViewById(R.id.editTermEndDate);
+        termStartDateView.setInputType(InputType.TYPE_NULL);
+        termEndDateView.setInputType(InputType.TYPE_NULL);
+        termEndDateView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 final Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddTerm.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(EditTerm.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                        endDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
+                        termEndDateView.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
                     }
                 }, year, month, day);
                 picker.show();
             }
         });
-        startDateText.setOnClickListener(new View.OnClickListener(){
+        termStartDateView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 final Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddTerm.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(EditTerm.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                        startDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
+                        termStartDateView.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
                     }
                 }, year, month, day);
                 picker.show();
             }
         });
+        termTitleView.setText(current.getTermTitle());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+        termStartDateView.setText(current.getStartDate().format(formatter).toString());
+        termEndDateView.setText(current.getEndDate().format(formatter).toString());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_term, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_term, menu);
         return true;
     }
 
@@ -101,12 +112,12 @@ public class AddTerm extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addNewTerm(View view) {
+    public void saveTerm(View view) {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-        if (startDateText.getText().toString().equals("") ||
-                termTitle.getText().toString().equals("") ||
-                endDateText.getText().toString().equals("")) {
+        if (termStartDateView.getText().toString().equals("") ||
+                termTitleView.getText().toString().equals("") ||
+                termEndDateView.getText().toString().equals("")) {
             builder.setMessage("Please enter a value for each field.")
                     .setCancelable(false)
                     .setTitle("Missing Or Invalid Values")
@@ -119,10 +130,10 @@ public class AddTerm extends AppCompatActivity {
             alert.show();
         } else {
             try {
-                String title = termTitle.getText().toString();
+                String title = termTitleView.getText().toString();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
-                LocalDate startDate = LocalDate.parse(startDateText.getText(), formatter);
-                LocalDate endDate = LocalDate.parse(endDateText.getText(), formatter);
+                LocalDate startDate = LocalDate.parse(termStartDateView.getText(), formatter);
+                LocalDate endDate = LocalDate.parse(termEndDateView.getText(), formatter);
                 if (endDate.isBefore(startDate.plusDays(1))){
                     builder.setMessage("The term end date must occur after the start date.")
                             .setCancelable(false)
@@ -135,21 +146,23 @@ public class AddTerm extends AppCompatActivity {
                     AlertDialog alert = builder.create();
                     alert.show();
                 } else {
-                    builder.setMessage("Create Term " + title + "?")
+                    builder.setMessage("Save Term " + title + "?")
                             .setCancelable(false)
                             .setTitle("Confirm")
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Term newTerm = new Term(title, startDate, endDate);
-                                    repo.insert(newTerm);
-                                    Intent intent = new Intent(AddTerm.this, HomeScreen.class);
+                                    current.setTermTitle(title);
+                                    current.setStartDate(startDate);
+                                    current.setEndDate(endDate);
+                                    repo.update(current);
+                                    Intent intent = new Intent(EditTerm.this, HomeScreen.class);
                                     startActivity(intent);
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                            }});
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
                     AlertDialog alert = builder.create();
                     alert.show();
                 }

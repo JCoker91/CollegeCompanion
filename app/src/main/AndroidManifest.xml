@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCompanion">
         <activity
-            android:name=".UI.AddCourse"
-            android:label="Add Course"
-            android:parentActivityName=".UI.TermDetailsScreen"
+            android:name=".UI.EditTerm"
             android:exported="false" />
+        <activity
+            android:name=".UI.AddCourse"
+            android:exported="false"
+            android:label="Add Course"
+            android:parentActivityName=".UI.TermDetailsScreen" />
         <activity
             android:name=".UI.AddTerm"
             android:exported="false"
@@ -21,14 +24,14 @@
             android:parentActivityName=".UI.HomeScreen" />
         <activity
             android:name=".UI.AssessmentDetailsScreen"
-            android:parentActivityName=".UI.CourseDetailsScreen"
+            android:exported="false"
             android:label="Assessment Title"
-            android:exported="false" />
+            android:parentActivityName=".UI.CourseDetailsScreen" />
         <activity
             android:name=".UI.CourseDetailsScreen"
+            android:exported="false"
             android:label="Course Details"
-            android:parentActivityName=".UI.TermDetailsScreen"
-            android:exported="false" />
+            android:parentActivityName=".UI.TermDetailsScreen" />
         <activity
             android:name=".UI.TermDetailsScreen"
             android:exported="false"

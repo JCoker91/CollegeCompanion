@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_dark"
-    tools:context=".UI.AddTerm">
+    tools:context=".UI.EditTerm">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/inputTermTitle"
+                android:id="@+id/editTermTitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/inputTermStartDate"
+                android:id="@+id/editTermStartDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -100,7 +100,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/inputTermEndDate"
+                android:id="@+id/editTermEndDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -112,9 +112,9 @@
                 android:textColorHint="#80FFFFFF" />
 
         </LinearLayout>
-<!--        <DatePicker-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
+        <!--        <DatePicker-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"/>-->
 
     </LinearLayout>
 
@@ -134,8 +134,8 @@
             android:layout_marginHorizontal="25dp"
             android:layout_weight="1"
             android:backgroundTint="#4CAF50"
-            android:text="Add term"
-            android:onClick="addNewTerm"
+            android:onClick="saveTerm"
+            android:text="Save Term"
             android:textStyle="bold" />
     </LinearLayout>
 

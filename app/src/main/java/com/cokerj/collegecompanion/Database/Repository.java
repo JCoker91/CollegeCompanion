@@ -38,11 +38,12 @@ public class Repository {
         databaseExecutor.execute(()->{
             mTermDAO.insert(term);
         });
-        try{
-            Thread.sleep(1000);;
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+    }
+
+    public void update(Term term){
+        databaseExecutor.execute(()->{
+            mTermDAO.update(term);
+        });
     }
 
     public void delete(Term term){
@@ -56,7 +57,7 @@ public class Repository {
             mAllTerms = mTermDAO.getAllTerms();
         });
         try{
-            Thread.sleep(1000);
+            Thread.sleep(200);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ public class Repository {
             mTermCourses = mCourseDAO.getTermCourses(termId);
         });
         try{
-            Thread.sleep(1000);
+            Thread.sleep(200);
         }catch (InterruptedException e){
             e.printStackTrace();
         }

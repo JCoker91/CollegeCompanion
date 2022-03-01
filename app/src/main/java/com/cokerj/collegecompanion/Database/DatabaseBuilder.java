@@ -13,7 +13,7 @@ import com.cokerj.collegecompanion.Entity.Assessment;
 import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
 
-@Database(entities = {Assessment.class, Course.class, Term.class}, version = 12, exportSchema = false)
+@Database(entities = {Assessment.class, Course.class, Term.class}, version = 15, exportSchema = false)
 public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
