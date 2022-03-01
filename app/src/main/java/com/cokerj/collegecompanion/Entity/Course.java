@@ -2,20 +2,25 @@ package com.cokerj.collegecompanion.Entity;
 
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.cokerj.collegecompanion.Database.Converters;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+
 @TypeConverters({Converters.class})
-@Entity(tableName = "courses")
+@Entity(tableName = "courses",
+        foreignKeys = {@ForeignKey(entity = Term.class,
+                parentColumns = "termId",
+                childColumns = "termId",
+                onDelete = ForeignKey.CASCADE)})
 public class Course {
 
     @PrimaryKey(autoGenerate = true)
-    private int couresId;
+    private int courseId;
+    private int termId;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -31,8 +36,16 @@ public class Course {
                 '}';
     }
 
-    public void setCouresId(int couresId) {
-        this.couresId = couresId;
+    public int getTermId() {
+        return termId;
+    }
+
+    public void setTermId(int termId) {
+        this.termId = termId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public String getStatus() {
@@ -87,8 +100,8 @@ public class Course {
         this.endDate = endDate;
     }
 
-    public int getCouresId() {
-        return couresId;
+    public int getCourseId() {
+        return courseId;
     }
 
     public String getName() {

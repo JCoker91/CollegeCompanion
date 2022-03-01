@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cokerj.collegecompanion.DAO.CourseDAO;
+import com.cokerj.collegecompanion.Database.Repository;
+import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
@@ -21,11 +24,13 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
         private final TextView termTitle;
         private final TextView startDate;
         private final TextView endDate;
+        private final TextView courseCount;
         private TermViewHolder(View itemView){
             super(itemView);
             termTitle = itemView.findViewById(R.id.termTitle);
             startDate = itemView.findViewById(R.id.termStartDate);
             endDate = itemView.findViewById(R.id.termEndDate);
+            courseCount = itemView.findViewById(R.id.courseCount);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
@@ -41,6 +46,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
             });
         }
     }
+    private Repository mRepo;
     private List<Term> mTerms;
     private final Context context;
     private final LayoutInflater mInflater;
@@ -60,12 +66,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
         if(mTerms!=null){
             Term current = mTerms.get(position);
+            int courseCount = mRepo.getCourseCount(current.getTermId());
             String title = current.getTermTitle();
             String startDate = current.getStartDate().toString();
             String endDate = current.getEndDate().toString();
             holder.startDate.setText(startDate);
             holder.endDate.setText(endDate);
             holder.termTitle.setText(title);
+            holder.courseCount.setText(String.valueOf(courseCount));
         }else {
             holder.termTitle.setText("There is no name");
         }
@@ -74,6 +82,10 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     public void setTerms(List<Term> terms){
         mTerms = terms;
         notifyDataSetChanged();
+    }
+
+    public void setRepository(Repository repo){
+        mRepo = repo;
     }
 
     @Override

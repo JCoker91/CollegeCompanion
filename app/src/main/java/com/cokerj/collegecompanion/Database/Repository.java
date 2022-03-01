@@ -20,6 +20,9 @@ public class Repository {
     private List<Assessment> mAllAssessments;
     private List<Course> mAllCourses;
     private List<Term> mAllTerms;
+    private List<Course> mTermCourses;
+    private int mTermCount;
+    private Term mTerm;
 
     private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -42,6 +45,12 @@ public class Repository {
         }
     }
 
+    public void delete(Term term){
+        databaseExecutor.execute(()->{
+            mTermDAO.delete(term);
+        });
+    }
+
     public List<Term> getAllTerms(){
         databaseExecutor.execute(()->{
             mAllTerms = mTermDAO.getAllTerms();
@@ -54,4 +63,39 @@ public class Repository {
         return mAllTerms;
     }
 
+    public List<Course> getTermCourses(int termId){
+        databaseExecutor.execute(()->{
+            mTermCourses = mCourseDAO.getTermCourses(termId);
+        });
+        try{
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mTermCourses;
+    }
+
+    public int getCourseCount(int termId){
+        databaseExecutor.execute(()->{
+            mTermCount = mCourseDAO.getCourseCount(termId);
+        });
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mTermCount;
+    }
+
+    public Term getTermById(int termId){
+        databaseExecutor.execute(()->{
+            mTerm = mTermDAO.getTermById(termId);
+        });
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mTerm;
+    }
 }

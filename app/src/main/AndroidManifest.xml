@@ -26,13 +26,13 @@
             android:exported="false" />
         <activity
             android:name=".UI.CourseDetailsScreen"
-            android:label="Course Title"
+            android:label="Course Details"
             android:parentActivityName=".UI.TermDetailsScreen"
             android:exported="false" />
         <activity
             android:name=".UI.TermDetailsScreen"
             android:exported="false"
-            android:label="Term Title"
+            android:label="Term Details"
             android:parentActivityName=".UI.HomeScreen" />
         <activity
             android:name=".UI.AssessmentsScreen"

@@ -36,23 +36,22 @@ public class HomeScreen extends AppCompatActivity {
         }
         final TermAdapter adapter = new TermAdapter(this);
         adapter.setTerms(terms);
+        adapter.setRepository(repo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
 
     public void addTerm(View view) {
-        System.out.println("Add Term");
-        int randomNumber = ThreadLocalRandom.current().nextInt(0, 15);
-        String title = "Term Number " + String.valueOf(randomNumber);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
-        LocalDate startDate = LocalDate.parse("01/01/2022", formatter);
-        LocalDate endDate = LocalDate.parse("03/31/2022", formatter);
-        Term newTerm = new Term(title, startDate, endDate);
-        Repository repo = new Repository(getApplication());
-        repo.insert(newTerm);
-        //        Intent intent = new Intent(HomeScreen.this, AddTerm.class);
-//        startActivity(intent);
+//        int randomNumber = ThreadLocalRandom.current().nextInt(0, 15);
+//        String title = "Term Number " + String.valueOf(randomNumber);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+//        LocalDate startDate = LocalDate.parse("01/01/2022", formatter);
+//        LocalDate endDate = LocalDate.parse("03/31/2022", formatter);
+//        Term newTerm = new Term(title, startDate, endDate);
+//        Repository repo = new Repository(getApplication());
+//        repo.insert(newTerm);
+        Intent intent = new Intent(HomeScreen.this, AddTerm.class);
+        startActivity(intent);
     }
 
     public void viewTermDetails(View view) {
