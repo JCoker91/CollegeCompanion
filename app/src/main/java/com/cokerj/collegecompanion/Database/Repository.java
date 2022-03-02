@@ -58,6 +58,18 @@ public class Repository {
         });
     }
 
+    public void delete(Course course){
+        databaseExecutor.execute(()->{
+            mCourseDAO.delete(course);
+        });
+    }
+
+    public void deleteCoursesByTermId(int termId){
+        databaseExecutor.execute(()->{
+            mCourseDAO.deleteCoursesByTermId(termId);
+        });
+    }
+
     public List<Term> getAllTerms(){
         databaseExecutor.execute(()->{
             mAllTerms = mTermDAO.getAllTerms();

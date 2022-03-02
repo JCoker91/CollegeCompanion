@@ -1,5 +1,6 @@
 package com.cokerj.collegecompanion.UI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -63,10 +66,10 @@ public class TermDetailsScreen extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void addCourse(View view) {
-        Intent intent = new Intent(TermDetailsScreen.this, AddCourse.class);
-        startActivity(intent);
-    }
+//    public void addCourse(View view) {
+//        Intent intent = new Intent(TermDetailsScreen.this, AddCourse.class);
+//        startActivity(intent);
+//    }
 
     public void viewCourseDetails(View view) {
         Intent intent = new Intent(TermDetailsScreen.this, CourseDetailsScreen.class);
@@ -97,6 +100,7 @@ public class TermDetailsScreen extends AppCompatActivity {
                     .setTitle("WARNING")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            repo.deleteCoursesByTermId(current.getTermId());
                             repo.delete(current);
                             Intent intent = new Intent(TermDetailsScreen.this, HomeScreen.class);
                             startActivity(intent);
@@ -130,5 +134,7 @@ public class TermDetailsScreen extends AppCompatActivity {
         String status = "In Progress";
         Course course = new Course(termId, "Test Course", startDate, endDate, instructorName,instructorPhone,instructorEmail, status);
         repo.insert(course);
+        Intent intent = new Intent(TermDetailsScreen.this, AddCourse.class);
+        startActivity(intent);
     }
 }
