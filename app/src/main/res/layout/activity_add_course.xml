@@ -7,272 +7,278 @@
     android:background="@color/blue_dark"
     tools:context=".UI.AddCourse">
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
-        android:paddingVertical="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/addCourseButtonContainer"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout9"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/term_widget"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:paddingVertical="10dp">
+            android:layout_marginHorizontal="10dp"
+            android:paddingVertical="20dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Title:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter Course Title"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Start Date:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseStartDate"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter Start Date"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="End Date:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseEndDate"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter End Date"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Instrutor\nName:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseInstructorName"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter Name"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Instructor Phone:"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseInstructorPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter Phone Number"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="Instructor Email:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputCourseInstructorEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:backgroundTint="#80FFFFFF"
-                    android:ems="10"
-                    android:hint="Enter Email"
-                    android:inputType="text"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80FFFFFF" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/linearLayout9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:orientation="vertical">
+                android:background="@drawable/term_widget"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:paddingVertical="10dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
                     android:gravity="center"
-                    android:text="Status:"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
 
-                <RadioGroup
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Title:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Course Title"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Start Date:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Start Date"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="End Date:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseEndDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter End Date"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Instrutor\nName:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseInstructorName"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Name"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Instructor Phone:"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseInstructorPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Phone Number"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Instructor Email:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputCourseInstructorEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Email"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="In Progress"
-                        android:textColor="@android:color/white" />
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Status:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
+                    <RadioGroup
+                        android:id="@+id/courseStatusRadioGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Completed"
-                        android:textColor="@android:color/white" />
+                        android:layout_weight="3">
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Dropped"
-                        android:textColor="@android:color/white" />
+                        <RadioButton
+                            android:id="@+id/inProgressRadioButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="In Progress"
+                            android:textColor="@android:color/white" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Planned to take"
-                        android:textColor="@android:color/white" />
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Completed"
+                            android:textColor="@android:color/white" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dropped"
+                            android:textColor="@android:color/white" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Planned to take"
+                            android:textColor="@android:color/white" />
+                    </RadioGroup>
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/addCourseButtonContainer"
@@ -291,6 +297,7 @@
             android:layout_height="75dp"
             android:layout_marginHorizontal="25dp"
             android:backgroundTint="#4CAF50"
+            android:onClick="addNewCourse"
             android:text="Add Course"
             android:textStyle="bold" />
     </LinearLayout>

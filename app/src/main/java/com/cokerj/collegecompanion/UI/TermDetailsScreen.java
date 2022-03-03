@@ -66,11 +66,6 @@ public class TermDetailsScreen extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-//    public void addCourse(View view) {
-//        Intent intent = new Intent(TermDetailsScreen.this, AddCourse.class);
-//        startActivity(intent);
-//    }
-
     public void viewCourseDetails(View view) {
         Intent intent = new Intent(TermDetailsScreen.this, CourseDetailsScreen.class);
         startActivity(intent);
@@ -125,16 +120,10 @@ public class TermDetailsScreen extends AppCompatActivity {
     }
 
     public void addNewCourseButton(View view) {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = LocalDate.now().plusMonths(3);
         int termId = current.getTermId();
-        String instructorName = "John Smith";
-        String instructorEmail = "john.smith@email.com";
-        String instructorPhone = "555-555";
-        String status = "In Progress";
-        Course course = new Course(termId, "Test Course", startDate, endDate, instructorName,instructorPhone,instructorEmail, status);
-        repo.insert(course);
         Intent intent = new Intent(TermDetailsScreen.this, AddCourse.class);
+        intent.putExtra("id",termId);
+        intent.putExtra("courseCount", courseCount);
         startActivity(intent);
     }
 }
