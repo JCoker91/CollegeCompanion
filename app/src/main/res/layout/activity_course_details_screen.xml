@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/courseDetailsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -49,7 +49,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/courseDetailsStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -72,7 +72,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/courseDetailsEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/courseDetailsInstructorPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -118,7 +118,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/courseDetailsInstructorEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -141,7 +141,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/courseDetailsInstructorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -164,7 +164,7 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/courseDetailsStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -266,7 +266,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/deleteCoursebutton"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
@@ -274,6 +274,7 @@
             android:backgroundTint="#F44336"
             android:text="Delete\nCourse"
             android:textSize="12sp"
+            android:onClick="deleteCourse"
             android:textStyle="bold" />
     </LinearLayout>
 

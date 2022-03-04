@@ -9,13 +9,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Course;
@@ -54,11 +59,24 @@ public class AddCourse extends AppCompatActivity {
         instructorEmail = findViewById(R.id.inputCourseInstructorEmail);
         startDateText.setInputType(InputType.TYPE_NULL);
         endDateText.setInputType(InputType.TYPE_NULL);
-        termId = getIntent().getIntExtra("termId", -1);
+        termId = getIntent().getIntExtra("id", -1);
         courseCount = getIntent().getIntExtra("courseCount", 0);
         courseStatusRadioGroup.clearCheck();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
-        // Add the Listener to the RadioGroup
+        instructorEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    v.clearFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
         courseStatusRadioGroup.setOnCheckedChangeListener(
                 new RadioGroup
                         .OnCheckedChangeListener() {
@@ -72,6 +90,9 @@ public class AddCourse extends AppCompatActivity {
         endDateText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 final Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
@@ -88,6 +109,8 @@ public class AddCourse extends AppCompatActivity {
         startDateText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 final Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
@@ -123,6 +146,7 @@ public class AddCourse extends AppCompatActivity {
         int selectedId = courseStatusRadioGroup.getCheckedRadioButtonId();
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
+        String phone = instructorPhone.getText().toString();
         if (startDateText.getText().toString().equals("") ||
                 courseTitle.getText().toString().equals("") ||
                 endDateText.getText().toString().equals("") ||

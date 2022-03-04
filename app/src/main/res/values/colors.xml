@@ -8,8 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_primary">#000099</color>
+    <color name="green_primary">#009900</color>
+    <color name="red_primary">#990000</color>
+    <color name="orange_primary">#BB6600</color>
     <color name="blue_dark">#000033</color>
     <color name="alt_color">#000055</color>
-    <color name="orange_primary">#BB6600</color>
     <color name="main_widget">#000055</color>
 </resources>

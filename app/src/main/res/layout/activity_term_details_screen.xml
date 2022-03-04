@@ -172,7 +172,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/deleteCoursebutton"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"

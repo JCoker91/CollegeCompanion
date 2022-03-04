@@ -83,13 +83,14 @@
 
                     <EditText
                         android:id="@+id/inputCourseStartDate"
+                        android:focusableInTouchMode="false"
+                        android:inputType="date"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:backgroundTint="#80FFFFFF"
                         android:ems="10"
                         android:hint="Enter Start Date"
-                        android:inputType="text"
                         android:textColor="@android:color/white"
                         android:textColorHint="#80FFFFFF" />
 
@@ -115,13 +116,14 @@
 
                     <EditText
                         android:id="@+id/inputCourseEndDate"
+                        android:focusableInTouchMode="false"
+                        android:inputType="date"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:backgroundTint="#80FFFFFF"
                         android:ems="10"
                         android:hint="Enter End Date"
-                        android:inputType="text"
                         android:textColor="@android:color/white"
                         android:textColorHint="#80FFFFFF" />
                 </LinearLayout>
@@ -270,7 +272,7 @@
                             android:id="@+id/radioButton4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Planned to take"
+                            android:text="Plan to take"
                             android:textColor="@android:color/white" />
                     </RadioGroup>
 

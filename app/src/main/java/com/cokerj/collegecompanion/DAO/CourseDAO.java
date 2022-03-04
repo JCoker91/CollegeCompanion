@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.cokerj.collegecompanion.Entity.Course;
+import com.cokerj.collegecompanion.Entity.Term;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM courses WHERE termId = :termId ORDER BY courseId ASC")
     List<Course> getTermCourses(int termId);
+
+    @Query("SELECT * FROM courses WHERE courseId = :courseId LIMIT 1")
+    Course getCourseById(int courseId);
 
     @Query("SELECT COUNT(courseId) FROM courses WHERE termId = :termId")
     int getCourseCount(int termId);

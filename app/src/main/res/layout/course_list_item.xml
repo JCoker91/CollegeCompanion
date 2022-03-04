@@ -73,7 +73,7 @@
             android:id="@+id/courseListItemStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/course_status"
+            android:background="@drawable/course_status_in_progress"
             android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
             android:text="In Progress"

@@ -2,12 +2,16 @@ package com.cokerj.collegecompanion.UI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cokerj.collegecompanion.Database.Repository;
@@ -24,6 +28,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         private final TextView courseStartDateView;
         private final TextView courseEndDateView;
         private final TextView courseStatusView;
+
         private CourseViewHolder(View itemView){
             super(itemView);
             courseTitleView = itemView.findViewById(R.id.courseListItemTitle);
@@ -37,9 +42,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     final Course current = mCourses.get(position);
                     Intent intent = new Intent(context, CourseDetailsScreen.class);
                     intent.putExtra("id", current.getCourseId());
-                    intent.putExtra("name", current.getName());
-                    intent.putExtra("startDate", current.getStartDate());
-                    intent.putExtra("endDate", current.getEndDate());
                     context.startActivity(intent);
                 }
             });
@@ -75,6 +77,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             holder.courseEndDateView.setText(endDate);
             holder.courseTitleView.setText(title);
             holder.courseStatusView.setText(courseStatus);
+            Drawable background = context.getResources().getDrawable(R.drawable.course_status_in_progress);
+            if (courseStatus.equals("In Progress")){background = context.getResources().getDrawable(R.drawable.course_status_in_progress);}
+            if (courseStatus.equals("Completed")){background = context.getResources().getDrawable(R.drawable.course_status_completed);}
+            if (courseStatus.equals("Dropped")){background = context.getResources().getDrawable(R.drawable.course_status_dropped);}
+            if (courseStatus.equals("Plan to take")){background = context.getResources().getDrawable(R.drawable.course_status_plan_to_take);}
+            holder.courseStatusView.setBackground(background);
+            holder.courseStatusView.setPadding(10,5,10,5);
+            holder.courseStatusView.setHeight(75);
+            holder.courseStatusView.setWidth(250);
         }else {
             holder.courseTitleView.setText("There is no name");
         }

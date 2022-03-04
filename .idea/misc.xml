@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/drawable/course_status_completed.xml" value="0.196" />
+        <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/drawable/course_status_dropped.xml" value="0.196" />
+        <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/drawable/course_status_in_progress.xml" value="0.18" />
+        <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/drawable/course_status_plan_to_take.xml" value="0.196" />
         <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_add_course.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_add_term.xml" value="0.33" />
+        <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_course_details_screen.xml" value="0.5" />
         <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_term_details_screen.xml" value="0.33" />
         <entry key="..\:/Users/cokerj/AndroidStudioProjects/CollegeCompanion/app/src/main/res/layout/activity_terms_screen.xml" value="0.1037037037037037" />

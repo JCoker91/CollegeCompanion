@@ -23,6 +23,7 @@ public class Repository {
     private List<Course> mTermCourses;
     private int mTermCount;
     private Term mTerm;
+    private Course mCourse;
 
     private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -104,6 +105,17 @@ public class Repository {
             e.printStackTrace();
         }
         return mTermCount;
+    }
+    public Course getCourseById(int courseId){
+        databaseExecutor.execute(()->{
+            mCourse = mCourseDAO.getCourseById(courseId);
+        });
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mCourse;
     }
 
     public Term getTermById(int termId){
