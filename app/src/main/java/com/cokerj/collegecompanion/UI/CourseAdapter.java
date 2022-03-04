@@ -40,8 +40,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     final Course current = mCourses.get(position);
+                    int courseCount = mRepo.getCourseCount(current.getTermId());
                     Intent intent = new Intent(context, CourseDetailsScreen.class);
                     intent.putExtra("id", current.getCourseId());
+                    intent.putExtra("courseCount", courseCount);
                     context.startActivity(intent);
                 }
             });

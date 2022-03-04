@@ -22,6 +22,12 @@ public interface AssessmentDAO {
     @Delete
     void delete(Assessment assessment);
 
+    @Query("SELECT * FROM assessments WHERE assessment_id = :assessmentId LIMIT 1")
+    Assessment getAssessmentById(int assessmentId);
+
+    @Query("SELECT * FROM assessments WHERE courseId= :courseId ORDER BY assessment_id ASC")
+    List<Assessment> getCourseAssessments(int courseId);
+
     @Query("SELECT * FROM assessments ORDER BY assessment_id ASC")
     List<Assessment> getAllAssessments();
 }

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_dark"
-    tools:context=".UI.AddCourse">
+    tools:context=".UI.EditCourse">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/addCourseButtonContainer"
+        app:layout_constraintBottom_toTopOf="@id/editCourseButtonContainer"
         app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
@@ -50,7 +50,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseTitle"
+                        android:id="@+id/editCourseTitleView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -82,15 +82,15 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseStartDate"
-                        android:focusableInTouchMode="false"
-                        android:inputType="date"
+                        android:id="@+id/editCourseStartDateView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:backgroundTint="#80FFFFFF"
                         android:ems="10"
+                        android:focusableInTouchMode="false"
                         android:hint="Enter Start Date"
+                        android:inputType="date"
                         android:textColor="@android:color/white"
                         android:textColorHint="#80FFFFFF" />
 
@@ -115,15 +115,15 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseEndDate"
-                        android:focusableInTouchMode="false"
-                        android:inputType="date"
+                        android:id="@+id/editCourseEndDateView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:backgroundTint="#80FFFFFF"
                         android:ems="10"
+                        android:focusableInTouchMode="false"
                         android:hint="Enter End Date"
+                        android:inputType="date"
                         android:textColor="@android:color/white"
                         android:textColorHint="#80FFFFFF" />
                 </LinearLayout>
@@ -147,7 +147,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseInstructorName"
+                        android:id="@+id/editCourseInstructorNameView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -180,7 +180,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseInstructorPhone"
+                        android:id="@+id/editCourseInstructorPhoneView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -212,7 +212,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/inputCourseInstructorEmail"
+                        android:id="@+id/editCourseInstructorEmailView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
@@ -242,7 +242,7 @@
                         android:textStyle="bold" />
 
                     <RadioGroup
-                        android:id="@+id/courseStatusRadioGroup"
+                        android:id="@+id/editCourseStatusRadioGroupView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3">
@@ -283,7 +283,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/addCourseButtonContainer"
+        android:id="@+id/editCourseButtonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/alt_color"
@@ -294,14 +294,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/editCourseSaveButton"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_marginHorizontal="25dp"
             android:backgroundTint="#4CAF50"
-            android:onClick="addNewCourse"
-            android:text="Add Course"
+            android:onClick="saveCourse"
+            android:text="Save Course"
             android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

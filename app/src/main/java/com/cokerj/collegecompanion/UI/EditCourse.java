@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -24,14 +25,13 @@ import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Course;
-import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class AddCourse extends AppCompatActivity {
+public class EditCourse extends AppCompatActivity {
     DatePickerDialog picker;
     EditText startDateText;
     EditText endDateText;
@@ -41,27 +41,50 @@ public class AddCourse extends AppCompatActivity {
     EditText instructorPhone;
     Repository repo;
     RadioGroup courseStatusRadioGroup;
+    RadioButton planToTakeRadioButton;
+    RadioButton inProgressRadioButton;
+    RadioButton completedRadioButton;
+    RadioButton droppedRadioButton;
     int termId;
-    int courseCount;
+    int courseId;
+    Course current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_course);
+        setContentView(R.layout.activity_edit_course);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         repo = new Repository(getApplication());
-        courseTitle = findViewById(R.id.inputCourseTitle);
-        courseStatusRadioGroup = findViewById(R.id.courseStatusRadioGroup);
-        startDateText = findViewById(R.id.inputCourseStartDate);
-        endDateText = findViewById(R.id.inputCourseEndDate);
-        instructorName = findViewById(R.id.inputCourseInstructorName);
-        instructorPhone = findViewById(R.id.inputCourseInstructorPhone);
-        instructorEmail = findViewById(R.id.inputCourseInstructorEmail);
+        courseId = getIntent().getIntExtra("courseId",0);
+        current = repo.getCourseById(courseId);
+        courseTitle = findViewById(R.id.editCourseTitleView);
+        courseTitle.setText(current.getName());
+        courseStatusRadioGroup = findViewById(R.id.editCourseStatusRadioGroupView);
+        startDateText = findViewById(R.id.editCourseStartDateView);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
+        startDateText.setText(current.getStartDate().format(formatter).toString());
+        endDateText = findViewById(R.id.editCourseEndDateView);
+        endDateText.setText(current.getEndDate().format(formatter).toString());
+        instructorName = findViewById(R.id.editCourseInstructorNameView);
+        instructorName.setText(current.getInstructorName());
+        instructorPhone = findViewById(R.id.editCourseInstructorPhoneView);
+        instructorPhone.setText(current.getInstructorPhone());
+        instructorEmail = findViewById(R.id.editCourseInstructorEmailView);
+        instructorEmail.setText(current.getInstructorEmail());
         startDateText.setInputType(InputType.TYPE_NULL);
         endDateText.setInputType(InputType.TYPE_NULL);
-        termId = getIntent().getIntExtra("id", -1);
-        courseCount = getIntent().getIntExtra("courseCount", 0);
+        termId = current.getTermId();
         courseStatusRadioGroup.clearCheck();
+        inProgressRadioButton = findViewById(R.id.inProgressRadioButton);
+        completedRadioButton = findViewById(R.id.completedRadioButton);
+        droppedRadioButton = findViewById(R.id.droppedRadioButton);
+        planToTakeRadioButton = findViewById(R.id.planToTakeRadioButton);
+        if (inProgressRadioButton.getText().equals(current.getStatus())){inProgressRadioButton.setChecked(true);}
+        if (completedRadioButton.getText().equals(current.getStatus())){completedRadioButton.setChecked(true);}
+        if (droppedRadioButton.getText().equals(current.getStatus())){droppedRadioButton.setChecked(true);}
+        if (planToTakeRadioButton.getText().equals(current.getStatus())){planToTakeRadioButton.setChecked(true);}
+
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
         instructorEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -86,7 +109,6 @@ public class AddCourse extends AppCompatActivity {
                         RadioButton radioButton = (RadioButton)group.findViewById(checkedId);
                     }
                 });
-
         endDateText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -97,7 +119,7 @@ public class AddCourse extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddCourse.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(EditCourse.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
                         endDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
@@ -115,7 +137,7 @@ public class AddCourse extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddCourse.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(EditCourse.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
                         startDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
@@ -128,7 +150,7 @@ public class AddCourse extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_course, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_course, menu);
         return true;
     }
 
@@ -142,11 +164,10 @@ public class AddCourse extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addNewCourse(View view) {
+    public void saveCourse(View view) {
         int selectedId = courseStatusRadioGroup.getCheckedRadioButtonId();
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-        String phone = instructorPhone.getText().toString();
         if (startDateText.getText().toString().equals("") ||
                 courseTitle.getText().toString().equals("") ||
                 endDateText.getText().toString().equals("") ||
@@ -188,16 +209,17 @@ public class AddCourse extends AppCompatActivity {
                     AlertDialog alert = builder.create();
                     alert.show();
                 } else {
-                    builder.setMessage("Create Course " + title + "?")
+                    builder.setMessage("Save Course " + title + "?")
                             .setCancelable(false)
                             .setTitle("Confirm")
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    int courseId = getIntent().getIntExtra("courseId",0);
                                     Course newCourse = new Course(termId,title, startDate, endDate, iName,iEmail,iPhone,status);
-                                    repo.insert(newCourse);
-                                    Intent intent = new Intent(AddCourse.this, TermDetailsScreen.class);
-                                    intent.putExtra("id", termId);
-                                    intent.putExtra("courseCount", courseCount);
+                                    newCourse.setCourseId(courseId);
+                                    repo.update(newCourse);
+                                    Intent intent = new Intent(EditCourse.this, CourseDetailsScreen.class);
+                                    intent.putExtra("id", courseId);
                                     startActivity(intent);
                                 }
                             })

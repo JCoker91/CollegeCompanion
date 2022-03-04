@@ -8,76 +8,51 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
+import com.cokerj.collegecompanion.Entity.Assessment;
 import com.cokerj.collegecompanion.Entity.Course;
-import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class AddCourse extends AppCompatActivity {
+public class AddAssessment extends AppCompatActivity {
+    int courseId;
+    TextView assessmentTitle;
+    TextView assessmentStartDate;
+    TextView assessmentEndDate;
+    RadioGroup assessmentTypeRadioGroup;
+    TextView assessmentDescription;
     DatePickerDialog picker;
-    EditText startDateText;
-    EditText endDateText;
-    EditText courseTitle;
-    EditText instructorName;
-    EditText instructorEmail;
-    EditText instructorPhone;
     Repository repo;
-    RadioGroup courseStatusRadioGroup;
-    int termId;
-    int courseCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_course);
+        setContentView(R.layout.activity_add_assessment);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        courseId = getIntent().getIntExtra("courseId", 0);
+        assessmentTitle = findViewById(R.id.inputAssessmentTitle);
+        assessmentStartDate = findViewById(R.id.inputAssessmentStartDate);
+        assessmentEndDate = findViewById(R.id.inputAssessmentEndDate);
+        assessmentDescription = findViewById(R.id.inputAssessmentDescription);
+        assessmentTypeRadioGroup = findViewById(R.id.assessmentTypeRadioGroup);
         repo = new Repository(getApplication());
-        courseTitle = findViewById(R.id.inputCourseTitle);
-        courseStatusRadioGroup = findViewById(R.id.courseStatusRadioGroup);
-        startDateText = findViewById(R.id.inputCourseStartDate);
-        endDateText = findViewById(R.id.inputCourseEndDate);
-        instructorName = findViewById(R.id.inputCourseInstructorName);
-        instructorPhone = findViewById(R.id.inputCourseInstructorPhone);
-        instructorEmail = findViewById(R.id.inputCourseInstructorEmail);
-        startDateText.setInputType(InputType.TYPE_NULL);
-        endDateText.setInputType(InputType.TYPE_NULL);
-        termId = getIntent().getIntExtra("id", -1);
-        courseCount = getIntent().getIntExtra("courseCount", 0);
-        courseStatusRadioGroup.clearCheck();
+        assessmentTypeRadioGroup.clearCheck();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
-        instructorEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    v.clearFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
-        courseStatusRadioGroup.setOnCheckedChangeListener(
+        assessmentTypeRadioGroup.setOnCheckedChangeListener(
                 new RadioGroup
                         .OnCheckedChangeListener() {
                     @Override
@@ -87,7 +62,7 @@ public class AddCourse extends AppCompatActivity {
                     }
                 });
 
-        endDateText.setOnClickListener(new View.OnClickListener(){
+        assessmentEndDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
@@ -97,16 +72,17 @@ public class AddCourse extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddCourse.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(AddAssessment.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                        endDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
+                        assessmentEndDate.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
                     }
                 }, year, month, day);
                 picker.show();
             }
         });
-        startDateText.setOnClickListener(new View.OnClickListener(){
+
+        assessmentStartDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
@@ -115,10 +91,10 @@ public class AddCourse extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                picker = new DatePickerDialog(AddCourse.this, new DatePickerDialog.OnDateSetListener(){
+                picker = new DatePickerDialog(AddAssessment.this, new DatePickerDialog.OnDateSetListener(){
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-                        startDateText.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
+                        assessmentStartDate.setText(String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth) + "-" + String.valueOf(year));
                     }
                 }, year, month, day);
                 picker.show();
@@ -142,20 +118,17 @@ public class AddCourse extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addNewCourse(View view) {
-        int selectedId = courseStatusRadioGroup.getCheckedRadioButtonId();
+    public void addNewAssessment(View view) {
+
+        int selectedId = assessmentTypeRadioGroup.getCheckedRadioButtonId();
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-        String phone = instructorPhone.getText().toString();
-        if (startDateText.getText().toString().equals("") ||
-                courseTitle.getText().toString().equals("") ||
-                endDateText.getText().toString().equals("") ||
-                instructorName.getText().toString().equals("") ||
-                instructorEmail.getText().toString().equals("") ||
-                instructorPhone.getText().toString().equals("") ||
+        if (assessmentStartDate.getText().toString().equals("") ||
+                assessmentTitle.getText().toString().equals("") ||
+                assessmentEndDate.getText().toString().equals("") ||
                 selectedId == -1 ||
-                termId == -1){
-            builder.setMessage("Please enter a value for each field.")
+                courseId == -1){
+            builder.setMessage("Please enter a value for all required fields.")
                     .setCancelable(false)
                     .setTitle("Missing Or Invalid Values")
                     .setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -167,19 +140,17 @@ public class AddCourse extends AppCompatActivity {
             alert.show();
         } else {
             try {
-                String title = courseTitle.getText().toString();
+                String title = assessmentTitle.getText().toString();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
-                LocalDate startDate = LocalDate.parse(startDateText.getText(), formatter);
-                LocalDate endDate = LocalDate.parse(endDateText.getText(), formatter);
-                String iName = instructorName.getText().toString();
-                String iPhone = instructorPhone.getText().toString();
-                String iEmail = instructorEmail.getText().toString();
-                RadioButton radioButton = (RadioButton)courseStatusRadioGroup.findViewById(selectedId);
-                String status = radioButton.getText().toString();
+                LocalDate startDate = LocalDate.parse(assessmentStartDate.getText(), formatter);
+                LocalDate endDate = LocalDate.parse(assessmentEndDate.getText(), formatter);
+                RadioButton radioButton = (RadioButton)assessmentTypeRadioGroup.findViewById(selectedId);
+                String type = radioButton.getText().toString();
+                String description = assessmentDescription.getText().toString();
                 if (endDate.isBefore(startDate.plusDays(1))){
-                    builder.setMessage("The course end date must occur after the start date.")
+                    builder.setMessage("The assessment end date must occur after the start date.")
                             .setCancelable(false)
-                            .setTitle("Invalid Course Dates")
+                            .setTitle("Invalid Assessment Dates")
                             .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
@@ -188,16 +159,15 @@ public class AddCourse extends AppCompatActivity {
                     AlertDialog alert = builder.create();
                     alert.show();
                 } else {
-                    builder.setMessage("Create Course " + title + "?")
+                    builder.setMessage("Create Assessment " + title + "?")
                             .setCancelable(false)
                             .setTitle("Confirm")
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Course newCourse = new Course(termId,title, startDate, endDate, iName,iEmail,iPhone,status);
-                                    repo.insert(newCourse);
-                                    Intent intent = new Intent(AddCourse.this, TermDetailsScreen.class);
-                                    intent.putExtra("id", termId);
-                                    intent.putExtra("courseCount", courseCount);
+                                    Assessment assessment = new Assessment(title,startDate,endDate,type,description, courseId);
+                                    repo.insert(assessment);
+                                    Intent intent = new Intent(AddAssessment.this, CourseDetailsScreen.class);
+                                    intent.putExtra("id", courseId);
                                     startActivity(intent);
                                 }
                             })
@@ -222,5 +192,7 @@ public class AddCourse extends AppCompatActivity {
                 alert.show();
             }
         }
+
+
     }
 }

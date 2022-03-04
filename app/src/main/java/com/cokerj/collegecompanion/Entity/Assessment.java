@@ -1,6 +1,7 @@
 package com.cokerj.collegecompanion.Entity;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
@@ -13,14 +14,29 @@ import java.util.Date;
 
 
 @TypeConverters({Converters.class})
-@Entity(tableName = "assessments")
+@Entity(tableName = "assessments", foreignKeys = {@ForeignKey(entity = Course.class,
+        parentColumns = "courseId",
+        childColumns = "courseId",
+        onDelete = ForeignKey.CASCADE)})
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessment_id;
+
+    private int courseId;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
     private String type;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
 
 
     @Override
@@ -29,6 +45,14 @@ public class Assessment {
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public void setAssessment_id(int assessment_id) {
@@ -72,10 +96,12 @@ public class Assessment {
         return type;
     }
 
-    public Assessment(String name, LocalDate startDate, LocalDate endDate, String type) {
+    public Assessment(String name, LocalDate startDate, LocalDate endDate, String type,String description, int courseId) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.type = type;
+        this.description = description;
+        this.courseId = courseId;
     }
 }

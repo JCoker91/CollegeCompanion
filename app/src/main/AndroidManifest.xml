@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCompanion">
         <activity
+            android:name=".UI.AddNote"
+            android:exported="false" />
+        <activity
+            android:name=".UI.NoteDetailsScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UI.CourseNotes"
+            android:exported="false" />
+        <activity
+            android:name=".UI.EditAssessment"
+            android:exported="false" />
+        <activity
+            android:name=".UI.AddAssessment"
+            android:exported="false" />
+        <activity
+            android:name=".UI.EditCourse"
+            android:exported="false" />
+        <activity
             android:name=".UI.EditTerm"
             android:exported="false" />
         <activity

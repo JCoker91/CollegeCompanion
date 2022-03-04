@@ -43,8 +43,7 @@ public class TermDetailsScreen extends AppCompatActivity {
         termDetailsEndDate = findViewById(R.id.termDetailsEndDate);
         repo = new Repository(getApplication());
         termId = getIntent().getIntExtra("id", 0);
-        courseCount = getIntent().getIntExtra("courseCount", 0);
-
+        courseCount = repo.getCourseCount(termId);
         RecyclerView recyclerView = findViewById(R.id.courseRView);
         LinearLayout noCoursesWarning = findViewById(R.id.noCoursesWarning);
         List<Course> courses = repo.getTermCourses(termId);
