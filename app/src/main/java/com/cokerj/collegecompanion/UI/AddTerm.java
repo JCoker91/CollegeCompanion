@@ -3,8 +3,11 @@ package com.cokerj.collegecompanion.UI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -142,6 +145,14 @@ public class AddTerm extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Term newTerm = new Term(title, startDate, endDate);
                                     repo.insert(newTerm);
+                                    Long trigger = endDate.toEpochDay();
+                                    Intent notifyIntent = new Intent(AddTerm.this, MyReceiver.class);
+                                    notifyIntent.putExtra("key", "The term ends today!");
+                                    PendingIntent sender = PendingIntent.getBroadcast(AddTerm.this,HomeScreen.counter++,notifyIntent, 0);
+                                    AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+
+
                                     Intent intent = new Intent(AddTerm.this, HomeScreen.class);
                                     startActivity(intent);
                                 }

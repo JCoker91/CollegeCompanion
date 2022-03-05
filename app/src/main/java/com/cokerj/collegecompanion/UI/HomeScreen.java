@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class HomeScreen extends AppCompatActivity {
+    public static int counter = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

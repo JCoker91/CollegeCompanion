@@ -30,6 +30,7 @@ public class Repository {
     private Course mCourse;
     private Assessment mAssessment;
     private List<Note> mCourseNotes;
+    private Note mNote;
 
     private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -163,6 +164,17 @@ public class Repository {
             e.printStackTrace();
         }
         return mCourse;
+    }
+    public Note getNoteById(int noteId){
+        databaseExecutor.execute(()->{
+            mNote = mNoteDAO.getNoteById(noteId);
+        });
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mNote;
     }
     public Assessment getAssessmentById(int assessmentId){
         databaseExecutor.execute(()->{

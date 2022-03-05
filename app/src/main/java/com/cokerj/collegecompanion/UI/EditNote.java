@@ -10,38 +10,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.cokerj.collegecompanion.Database.Repository;
-import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Note;
 import com.cokerj.collegecompanion.R;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-public class AddNote extends AppCompatActivity {
-
-    int courseId;
-    TextView noteTitle;
-    TextView noteContent;
+public class EditNote extends AppCompatActivity {
     Repository repo;
-
+    Note current;
+    EditText noteTitle;
+    EditText noteContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_note);
+        setContentView(R.layout.activity_edit_note);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        courseId = getIntent().getIntExtra("courseId", 0);
         repo = new Repository(getApplication());
-        noteTitle = findViewById(R.id.inputNoteTitle);
-        noteContent = findViewById(R.id.inputNoteContent);
+        int noteId = getIntent().getIntExtra("noteId", 0);
+        current = repo.getNoteById(noteId);
+        noteTitle = findViewById(R.id.editNoteTitle);
+        noteContent = findViewById(R.id.editNoteContent);
+        noteTitle.setText(current.getTitle().toString());
+        noteContent.setText(current.getContent().toString());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_course, menu);
+        getMenuInflater().inflate(R.menu.menu_course_details, menu);
         return true;
     }
 
@@ -49,13 +45,13 @@ public class AddNote extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                this.finish();
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void addNewNote(View view) {
+    public void editExistingNote(View view) {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
         if (noteTitle.getText().toString().equals("") ||
@@ -74,24 +70,25 @@ public class AddNote extends AppCompatActivity {
             try {
                 String title = noteTitle.getText().toString();
                 String content = noteContent.getText().toString();
-                builder.setMessage("Create Note?")
-                            .setCancelable(false)
-                            .setTitle("Confirm")
-                            .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Note note = new Note(title, content, courseId);
-                                    repo.insert(note);
-                                    Intent intent = new Intent(AddNote.this, CourseNotes.class);
-                                    intent.putExtra("courseId", courseId);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }});
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                builder.setMessage("Update Note?")
+                        .setCancelable(false)
+                        .setTitle("Confirm")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                current.setTitle(title);
+                                current.setContent(content);
+                                repo.update(current);
+                                Intent intent = new Intent(EditNote.this, NoteDetailsScreen.class);
+                                intent.putExtra("noteId", current.getNoteId());
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }});
+                AlertDialog alert = builder.create();
+                alert.show();
 
             } catch (Exception e) {
                 e.printStackTrace();

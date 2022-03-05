@@ -22,6 +22,9 @@ public interface NoteDAO {
     @Delete
     void delete(Note note);
 
+    @Query("SELECT * FROM notes WHERE noteId = :noteId LIMIT 1")
+    Note getNoteById(int noteId);
+
     @Query("SELECT * FROM notes WHERE courseId = :courseId ORDER BY noteId ASC")
     List<Note> getCourseNotes(int courseId);
 }

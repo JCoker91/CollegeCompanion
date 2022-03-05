@@ -84,7 +84,6 @@ public class CourseDetailsScreen extends AppCompatActivity {
     public void deleteCourse(View view) {
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
-//        if(courseCount == 0) {
             builder.setMessage("Would you like to delete course " + current.getName() + " and all associated assessments?")
                     .setCancelable(false)
                     .setTitle("Delete Course")
