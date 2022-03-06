@@ -1,15 +1,14 @@
 package com.cokerj.collegecompanion.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
 import com.cokerj.collegecompanion.Database.Converters;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 
@@ -39,6 +38,7 @@ public class Assessment {
     private String description;
 
 
+    @NonNull
     @Override
     public String toString() {
         return "Assessment{" +

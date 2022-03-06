@@ -16,12 +16,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Repository {
-    private AssessmentDAO mAssessmentDAO;
-    private TermDAO mTermDAO;
-    private CourseDAO mCourseDAO;
-    private NoteDAO mNoteDAO;
-    private List<Assessment> mAllAssessments;
-    private List<Course> mAllCourses;
+    final private AssessmentDAO mAssessmentDAO;
+    final private TermDAO mTermDAO;
+    final private CourseDAO mCourseDAO;
+    final private NoteDAO mNoteDAO;
     private List<Term> mAllTerms;
     private List<Course> mTermCourses;
     private List<Assessment> mCourseAssessments;
@@ -32,7 +30,7 @@ public class Repository {
     private List<Note> mCourseNotes;
     private Note mNote;
 
-    private static int NUMBER_OF_THREADS=4;
+    final private static int NUMBER_OF_THREADS=4;
     static final ExecutorService databaseExecutor= Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public Repository(Application application){
@@ -44,85 +42,57 @@ public class Repository {
     }
 
     public void insert(Term term){
-        databaseExecutor.execute(()->{
-            mTermDAO.insert(term);
-        });
+        databaseExecutor.execute(()->mTermDAO.insert(term));
     }
 
     public void insert(Course course){
-        databaseExecutor.execute(()->{
-            mCourseDAO.insert(course);
-        });
+        databaseExecutor.execute(()-> mCourseDAO.insert(course));
     }
 
     public void insert(Assessment assessment){
-        databaseExecutor.execute(()->{
-            mAssessmentDAO.insert(assessment);
-        });
+        databaseExecutor.execute(()-> mAssessmentDAO.insert(assessment));
     }
 
     public void insert(Note note){
-        databaseExecutor.execute(()->{
-            mNoteDAO.insert(note);
-        });
+        databaseExecutor.execute(()-> mNoteDAO.insert(note));
     }
 
     public void update(Term term){
-        databaseExecutor.execute(()->{
-            mTermDAO.update(term);
-        });
+        databaseExecutor.execute(()-> mTermDAO.update(term));
     }
 
     public void update(Course course){
-        databaseExecutor.execute(()->{
-            mCourseDAO.update(course);
-        });
+        databaseExecutor.execute(()-> mCourseDAO.update(course));
     }
 
     public void update(Assessment assessment){
-        databaseExecutor.execute(()->{
-            mAssessmentDAO.update(assessment);
-        });
+        databaseExecutor.execute(()-> mAssessmentDAO.update(assessment));
     }
 
     public void update(Note note){
-        databaseExecutor.execute(()->{
-            mNoteDAO.update(note);
-        });
+        databaseExecutor.execute(()-> mNoteDAO.update(note));
     }
 
     public void delete(Term term){
-        databaseExecutor.execute(()->{
-            mTermDAO.delete(term);
-        });
+        databaseExecutor.execute(()-> mTermDAO.delete(term));
     }
 
     public void delete(Course course){
-        databaseExecutor.execute(()->{
-            mCourseDAO.delete(course);
-        });
+        databaseExecutor.execute(()-> mCourseDAO.delete(course));
     }
     public void delete(Assessment assessment){
-        databaseExecutor.execute(()->{
-            mAssessmentDAO.delete(assessment);
-        });
+        databaseExecutor.execute(()-> mAssessmentDAO.delete(assessment));
     }
     public void delete(Note note){
-        databaseExecutor.execute(()->{
-            mNoteDAO.delete(note);
-        });
+        databaseExecutor.execute(()-> mNoteDAO.delete(note));
     }
 
     public void deleteCoursesByTermId(int termId){
-        databaseExecutor.execute(()->{
-            mCourseDAO.deleteCoursesByTermId(termId);
-        });
+        databaseExecutor.execute(()-> mCourseDAO.deleteCoursesByTermId(termId));
     }
 
     public List<Term> getAllTerms(){
-        databaseExecutor.execute(()->{
-            mAllTerms = mTermDAO.getAllTerms();
-        });
+        databaseExecutor.execute(()-> mAllTerms = mTermDAO.getAllTerms());
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -132,9 +102,7 @@ public class Repository {
     }
 
     public List<Course> getTermCourses(int termId){
-        databaseExecutor.execute(()->{
-            mTermCourses = mCourseDAO.getTermCourses(termId);
-        });
+        databaseExecutor.execute(()-> mTermCourses = mCourseDAO.getTermCourses(termId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -144,9 +112,7 @@ public class Repository {
     }
 
     public int getCourseCount(int termId){
-        databaseExecutor.execute(()->{
-            mTermCount = mCourseDAO.getCourseCount(termId);
-        });
+        databaseExecutor.execute(()-> mTermCount = mCourseDAO.getCourseCount(termId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -155,9 +121,7 @@ public class Repository {
         return mTermCount;
     }
     public Course getCourseById(int courseId){
-        databaseExecutor.execute(()->{
-            mCourse = mCourseDAO.getCourseById(courseId);
-        });
+        databaseExecutor.execute(()-> mCourse = mCourseDAO.getCourseById(courseId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -166,9 +130,7 @@ public class Repository {
         return mCourse;
     }
     public Note getNoteById(int noteId){
-        databaseExecutor.execute(()->{
-            mNote = mNoteDAO.getNoteById(noteId);
-        });
+        databaseExecutor.execute(()-> mNote = mNoteDAO.getNoteById(noteId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -177,9 +139,7 @@ public class Repository {
         return mNote;
     }
     public Assessment getAssessmentById(int assessmentId){
-        databaseExecutor.execute(()->{
-            mAssessment = mAssessmentDAO.getAssessmentById(assessmentId);
-        });
+        databaseExecutor.execute(()-> mAssessment = mAssessmentDAO.getAssessmentById(assessmentId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -189,9 +149,7 @@ public class Repository {
     }
 
     public Term getTermById(int termId){
-        databaseExecutor.execute(()->{
-            mTerm = mTermDAO.getTermById(termId);
-        });
+        databaseExecutor.execute(()-> mTerm = mTermDAO.getTermById(termId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -201,9 +159,7 @@ public class Repository {
     }
 
     public List<Assessment> getCourseAssessments(int courseId){
-        databaseExecutor.execute(()->{
-            mCourseAssessments = mAssessmentDAO.getCourseAssessments(courseId);
-        });
+        databaseExecutor.execute(()-> mCourseAssessments = mAssessmentDAO.getCourseAssessments(courseId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -213,9 +169,7 @@ public class Repository {
     }
 
     public List<Note> getCourseNotes(int courseId){
-        databaseExecutor.execute(()->{
-            mCourseNotes = mNoteDAO.getCourseNotes(courseId);
-        });
+        databaseExecutor.execute(()-> mCourseNotes = mNoteDAO.getCourseNotes(courseId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){

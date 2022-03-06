@@ -1,6 +1,7 @@
 package com.cokerj.collegecompanion.Entity;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -28,6 +29,7 @@ public class Course {
     private String instructorEmail;
     private String instructorPhone;
 
+    @NonNull
     @Override
     public String toString() {
         return "Course{" +

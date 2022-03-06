@@ -1,14 +1,14 @@
 package com.cokerj.collegecompanion.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.cokerj.collegecompanion.Database.Converters;
-import com.cokerj.collegecompanion.Database.Repository;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 @TypeConverters({Converters.class})
 @Entity(tableName = "terms")
 public class Term {
@@ -37,6 +37,7 @@ public class Term {
         this.startDate = startDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Term{" +

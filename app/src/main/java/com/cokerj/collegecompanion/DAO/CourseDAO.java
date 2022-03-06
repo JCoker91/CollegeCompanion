@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.cokerj.collegecompanion.Entity.Course;
-import com.cokerj.collegecompanion.Entity.Term;
 
 import java.util.List;
 
@@ -22,9 +21,6 @@ public interface CourseDAO {
 
     @Delete
     void delete(Course course);
-
-    @Query("SELECT * FROM courses ORDER BY courseId ASC")
-    List<Course> getAllCourses();
 
     @Query("SELECT * FROM courses WHERE termId = :termId ORDER BY courseId ASC")
     List<Course> getTermCourses(int termId);

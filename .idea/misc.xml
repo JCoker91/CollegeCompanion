@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout-land/activity_edit_note.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout-land/activity_edit_term.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-land/activity_note_details_screen.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout-land/activity_term_details_screen.xml" value="0.2375" />
         <entry key="app/src/main/res/layout-land/term_list_item.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_add_assessment.xml" value="0.3098958333333333" />

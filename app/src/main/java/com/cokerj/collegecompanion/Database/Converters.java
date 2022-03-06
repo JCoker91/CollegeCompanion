@@ -4,7 +4,6 @@ import androidx.room.TypeConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Converters {
     @TypeConverter
@@ -22,6 +21,6 @@ public class Converters {
     @TypeConverter
     public static String fromDate(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
-        return date == null ? null: date.format(formatter).toString();
+        return date == null ? null: date.format(formatter);
     }
 }

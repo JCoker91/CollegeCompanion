@@ -1,5 +1,6 @@
 package com.cokerj.collegecompanion.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -21,6 +22,7 @@ public class Note {
         this.courseId = courseId;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return title;
