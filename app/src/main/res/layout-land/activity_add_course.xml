@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark"
+    tools:context=".UI.AddCourse">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:paddingVertical="20dp"
+        tools:layout_editor_absoluteX="147dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/term_widget"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:paddingVertical="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Title:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:hint="Enter Course Title"
+                    android:inputType="text"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Start Date:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:focusableInTouchMode="false"
+                    android:hint="Enter Start Date"
+                    android:inputType="date"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="End Date:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:focusableInTouchMode="false"
+                    android:hint="Enter End Date"
+                    android:inputType="date"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Instrutor\nName:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseInstructorName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:hint="Enter Name"
+                    android:inputType="text"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Instructor Phone:"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseInstructorPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:hint="Enter Phone Number"
+                    android:inputType="text"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Instructor Email:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/inputCourseInstructorEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:backgroundTint="#80FFFFFF"
+                    android:ems="10"
+                    android:hint="Enter Email"
+                    android:inputType="text"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="#80FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Status:"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/courseStatusRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                    <RadioButton
+                        android:id="@+id/inProgressRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="In Progress"
+                        android:textColor="@android:color/white" />
+
+                    <RadioButton
+                        android:id="@+id/completedRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Completed"
+                        android:textColor="@android:color/white" />
+
+                    <RadioButton
+                        android:id="@+id/droppedRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dropped"
+                        android:textColor="@android:color/white" />
+
+                    <RadioButton
+                        android:id="@+id/planToTakeRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Plan to take"
+                        android:textColor="@android:color/white" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addCourseButtonContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:backgroundTint="#4CAF50"
+                    android:onClick="addNewCourse"
+                    android:text="Add Course"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

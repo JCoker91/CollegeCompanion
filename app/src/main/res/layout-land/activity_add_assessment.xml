@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark"
+    tools:context=".UI.AddAssessment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_primary"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/topLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/term_widget"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Title:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputAssessmentTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:hint="Enter Assessment Title"
+                        android:inputType="text"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Start Date:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputAssessmentStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:focusableInTouchMode="false"
+                        android:hint="Enter Start Date"
+                        android:inputType="date"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="End Date:"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputAssessmentEndDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:backgroundTint="#80FFFFFF"
+                        android:ems="10"
+                        android:focusableInTouchMode="false"
+                        android:hint="Enter End Eate"
+                        android:inputType="date"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80FFFFFF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Type"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/assessmentTypeRadioGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3">
+
+                        <RadioButton
+                            android:id="@+id/performanceRadioButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Performance"
+                            android:textColor="@android:color/white" />
+
+                        <RadioButton
+                            android:id="@+id/objectiveRadioButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Objective"
+                            android:textColor="@android:color/white" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <!--        <DatePicker-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/midLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/term_widget"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Description (optional)"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/inputAssessmentDescription"
+                    android:layout_width="400dp"
+                    android:layout_height="200dp"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="Enter a course  description...\n"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp" />
+
+                <!--        <DatePicker-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonContainer"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <Button
+                    android:id="@+id/addAssessmentButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#4CAF50"
+                    android:onClick="addNewAssessment"
+                    android:text="Add Assessment"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,7 +47,7 @@ public class AssessmentDetailsScreen extends AppCompatActivity {
         assessmentEndDate.setText(current.getEndDate().format(formatter).toString());
         assessmentType.setText(current.getType());
         assessmentDescription.setText(current.getDescription());
-        if (current.getDescription().length() == 1){
+        if (current.getDescription().length() < 1){
             assessmentDescription.setText("This assessment has no description.\nClick the button below to edit the assessment.");
         }
     }

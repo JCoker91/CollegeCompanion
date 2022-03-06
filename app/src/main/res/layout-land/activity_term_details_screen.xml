@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark"
+    tools:context=".UI.TermDetailsScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout6"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/alt_color"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_screen_widget"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/termDetailsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Term Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Start Date:"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/termDetailsStartDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="End Date:"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/termDetailsEndDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:text="Courses"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/noCoursesWarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="10sp"
+                        android:text="No courses created for this term.\nPress the Add Course button below to add a new course."
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/courseRView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/alt_color"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/editCourseButton"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:onClick="editTerm"
+            android:text="Edit\nTerm"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#4CAF50"
+            android:text="Add\nCourse"
+            android:onClick="addNewCourseButton"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/deleteCoursebutton"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#F44336"
+            android:onClick="deleteTerm"
+            android:text="Delete\nTerm"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,27 +16,35 @@
 
         <activity
             android:name=".UI.EditNote"
+            android:label="Edit Note"
             android:exported="false" />
         <activity
             android:name=".UI.AddNote"
+            android:label="Add Note"
             android:exported="false" />
         <activity
             android:name=".UI.NoteDetailsScreen"
+            android:label="Note Details"
             android:exported="false" />
         <activity
             android:name=".UI.CourseNotes"
+            android:label="Coures Notes"
             android:exported="false" />
         <activity
             android:name=".UI.EditAssessment"
+            android:label="Edit Assessment"
             android:exported="false" />
         <activity
             android:name=".UI.AddAssessment"
+            android:label="Add Assessment"
             android:exported="false" />
         <activity
             android:name=".UI.EditCourse"
+            android:label="Edit Course"
             android:exported="false" />
         <activity
             android:name=".UI.EditTerm"
+            android:label="Edit Term"
             android:exported="false" />
         <activity
             android:name=".UI.AddCourse"
@@ -51,7 +59,7 @@
         <activity
             android:name=".UI.AssessmentDetailsScreen"
             android:exported="false"
-            android:label="Assessment Title"
+            android:label="Assessment Details"
             android:parentActivityName=".UI.CourseDetailsScreen" />
         <activity
             android:name=".UI.CourseDetailsScreen"
@@ -63,15 +71,6 @@
             android:exported="false"
             android:label="Term Details"
             android:parentActivityName=".UI.HomeScreen" />
-        <activity
-            android:name=".UI.AssessmentsScreen"
-            android:exported="false" />
-        <activity
-            android:name=".UI.CoursesScreen"
-            android:exported="false" />
-        <activity
-            android:name=".UI.TermsScreen"
-            android:exported="false" />
         <activity
             android:name=".UI.HomeScreen"
             android:exported="true">

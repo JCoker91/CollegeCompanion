@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark"
+    tools:context=".UI.HomeScreen">
+
+    <LinearLayout
+        android:id="@+id/lefLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top|center_vertical|fill_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/alt_color"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Hello, User!"
+                    android:textColor="@android:color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Don't give up!"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/alt_color"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#4CAF50"
+                    android:onClick="addTerm"
+                    android:text="Add Term"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Terms"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/noTermsWarning"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="10sp"
+                        android:text="No terms created.\nPress the button to add a term."
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/termRView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:clipToPadding="false"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/linearLayout3"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/linearLayout8"-->
+<!--        tools:layout_editor_absoluteX="1dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="20dp">-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--            <include layout="@layout/term_list_item" />-->
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
