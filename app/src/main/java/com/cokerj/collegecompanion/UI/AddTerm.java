@@ -23,9 +23,12 @@ import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddTerm extends AppCompatActivity {
     DatePickerDialog picker;
@@ -145,12 +148,29 @@ public class AddTerm extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Term newTerm = new Term(title, startDate, endDate);
                                     repo.insert(newTerm);
-                                    Long trigger = endDate.toEpochDay();
-                                    Intent notifyIntent = new Intent(AddTerm.this, MyReceiver.class);
-                                    notifyIntent.putExtra("key", "The term ends today!");
-                                    PendingIntent sender = PendingIntent.getBroadcast(AddTerm.this,HomeScreen.counter++,notifyIntent, 0);
+                                    String myFormat = "M-d-yyyy";
+                                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                    Date startDateTriggerDate = null;
+                                    Date endDateTriggerDate = null;
                                     AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                                    alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                                    try {
+                                        startDateTriggerDate = sdf.parse(startDateText.getText().toString());
+                                        endDateTriggerDate = sdf.parse(endDateText.getText().toString());
+                                    } catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    Long startDateTrigger = startDateTriggerDate.getTime();
+                                    Long endDateTrigger = endDateTriggerDate.getTime();
+                                    Intent notifyIntentStartDate = new Intent(AddTerm.this, MyReceiver.class);
+                                    notifyIntentStartDate.putExtra("content", "The term " + title + " starts today!");
+                                    notifyIntentStartDate.putExtra("title", "Term Starting");
+                                    Intent notifyIntentEndDate = new Intent(AddTerm.this, MyReceiver.class);
+                                    notifyIntentEndDate.putExtra("title", "Term Ending");
+                                    notifyIntentEndDate.putExtra("content", "The term " + title + " ends today!");
+                                    PendingIntent senderStartDate = PendingIntent.getBroadcast(AddTerm.this,(int)System.currentTimeMillis(),notifyIntentStartDate, 0);
+                                    PendingIntent senderEndDate = PendingIntent.getBroadcast(AddTerm.this,(int)System.currentTimeMillis()+1,notifyIntentEndDate, 0);
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, startDateTrigger, senderStartDate);
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDateTrigger, senderEndDate);
 
 
                                     Intent intent = new Intent(AddTerm.this, HomeScreen.class);

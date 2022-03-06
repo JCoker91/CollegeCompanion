@@ -13,18 +13,17 @@ import androidx.core.app.NotificationCompat;
 import com.cokerj.collegecompanion.R;
 
 public class MyReceiver extends BroadcastReceiver {
-    String channelId = "test";
-    static int notificationId;
+    String channelId = "College Companion";
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, intent.getStringExtra("key"), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, intent.getStringExtra("content"), Toast.LENGTH_LONG).show();
         createNotificationChannel(context, channelId);
         Notification n = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentText(intent.getStringExtra("key"))
-                .setContentTitle("Notification Test").build();
+                .setContentText(intent.getStringExtra("content"))
+                .setContentTitle(intent.getStringExtra("title")).build();
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(notificationId++,n);
+        manager.notify((int)System.currentTimeMillis(),n);
     }
 
     private void createNotificationChannel(Context context, String CHANNEL_ID){

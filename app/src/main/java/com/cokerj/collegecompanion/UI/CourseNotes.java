@@ -38,7 +38,7 @@ public class CourseNotes extends AppCompatActivity {
         courseId = getIntent().getIntExtra("courseId",0);
         current = repo.getCourseById(courseId);
         courseTitle = findViewById(R.id.courseNotesCoursetitle);
-        courseTitle.setText(current.getName());
+        courseTitle.setText(current.getName() + " Notes");
         List<Note> courseNotes = repo.getCourseNotes(courseId);
         final NoteAdapter adapter = new NoteAdapter(this);
         adapter.setNotes(courseNotes);

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/alt_color"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -174,10 +175,12 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#4CAF50"
             android:onClick="toCourseNotes"
+            android:paddingVertical="15dp"
             android:text="View Course Notes"
             android:textStyle="bold" />
 

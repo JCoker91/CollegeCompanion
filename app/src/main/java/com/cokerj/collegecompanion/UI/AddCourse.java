@@ -3,8 +3,11 @@ package com.cokerj.collegecompanion.UI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,9 +30,12 @@ import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddCourse extends AppCompatActivity {
     DatePickerDialog picker;
@@ -195,6 +201,29 @@ public class AddCourse extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Course newCourse = new Course(termId,title, startDate, endDate, iName,iEmail,iPhone,status);
                                     repo.insert(newCourse);
+                                    String myFormat = "M-d-yyyy";
+                                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                    Date startDateTriggerDate = null;
+                                    Date endDateTriggerDate = null;
+                                    AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                                    try {
+                                        startDateTriggerDate = sdf.parse(startDateText.getText().toString());
+                                        endDateTriggerDate = sdf.parse(endDateText.getText().toString());
+                                    } catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    Long startDateTrigger = startDateTriggerDate.getTime();
+                                    Long endDateTrigger = endDateTriggerDate.getTime();
+                                    Intent notifyIntentStartDate = new Intent(AddCourse.this, MyReceiver.class);
+                                    notifyIntentStartDate.putExtra("content", "The course " + title + " starts today!");
+                                    notifyIntentStartDate.putExtra("title", "Course Starting");
+                                    Intent notifyIntentEndDate = new Intent(AddCourse.this, MyReceiver.class);
+                                    notifyIntentEndDate.putExtra("title", "Course Ending");
+                                    notifyIntentEndDate.putExtra("content", "The course " + title + " ends today!");
+                                    PendingIntent senderStartDate = PendingIntent.getBroadcast(AddCourse.this,(int)System.currentTimeMillis(),notifyIntentStartDate, 0);
+                                    PendingIntent senderEndDate = PendingIntent.getBroadcast(AddCourse.this,(int)System.currentTimeMillis()+1,notifyIntentEndDate, 0);
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, startDateTrigger, senderStartDate);
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, endDateTrigger, senderEndDate);
                                     Intent intent = new Intent(AddCourse.this, TermDetailsScreen.class);
                                     intent.putExtra("id", termId);
                                     intent.putExtra("courseCount", courseCount);
