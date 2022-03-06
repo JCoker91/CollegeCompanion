@@ -89,21 +89,14 @@ public class TermDetailsScreen extends AppCompatActivity {
                         }
             });
         } else {
-            builder.setMessage("Term " + current.getTermTitle() + " has " + String.valueOf(courseCount) + " courses assigned to it. Deleting the term will also delete these courses. Are you sure?")
+            builder.setMessage("Term " + current.getTermTitle() + " has " + String.valueOf(courseCount) + " courses assigned to it. Please delete all courses before deleting the term.")
                     .setCancelable(false)
                     .setTitle("WARNING")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            repo.deleteCoursesByTermId(current.getTermId());
-                            repo.delete(current);
-                            Intent intent = new Intent(TermDetailsScreen.this, HomeScreen.class);
-                            startActivity(intent);
+                            dialog.cancel();
                         }
-                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int id){
-                    dialog.cancel();
-                }
-            });
+                    });
         }
         AlertDialog alert = builder.create();
         alert.show();
