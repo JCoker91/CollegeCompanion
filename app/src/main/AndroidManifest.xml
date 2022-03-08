@@ -9,43 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeCompanion">
+        <activity
+            android:name=".UI.MainActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <receiver
             android:name=".UI.MyReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity
             android:name=".UI.EditNote"
-            android:label="Edit Note"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Note" />
         <activity
             android:name=".UI.AddNote"
-            android:label="Add Note"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Add Note" />
         <activity
             android:name=".UI.NoteDetailsScreen"
-            android:label="Note Details"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Note Details" />
         <activity
             android:name=".UI.CourseNotes"
-            android:label="Coures Notes"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Course Notes" />
         <activity
             android:name=".UI.EditAssessment"
-            android:label="Edit Assessment"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Assessment" />
         <activity
             android:name=".UI.AddAssessment"
-            android:label="Add Assessment"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Add Assessment" />
         <activity
             android:name=".UI.EditCourse"
-            android:label="Edit Course"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Course" />
         <activity
             android:name=".UI.EditTerm"
-            android:label="Edit Term"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Term" />
         <activity
             android:name=".UI.AddCourse"
             android:exported="false"
@@ -55,7 +65,7 @@
             android:name=".UI.AddTerm"
             android:exported="false"
             android:label="Add Term"
-            android:parentActivityName=".UI.HomeScreen" />
+            android:parentActivityName=".UI.TermsScreen" />
         <activity
             android:name=".UI.AssessmentDetailsScreen"
             android:exported="false"
@@ -70,15 +80,13 @@
             android:name=".UI.TermDetailsScreen"
             android:exported="false"
             android:label="Term Details"
-            android:parentActivityName=".UI.HomeScreen" />
+            android:parentActivityName=".UI.TermsScreen" />
         <activity
-            android:name=".UI.HomeScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".UI.TermsScreen"
+            android:label="Terms"
+            android:parentActivityName=".UI.MainActivity"
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

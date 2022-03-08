@@ -173,7 +173,7 @@ public class AddTerm extends AppCompatActivity {
                                     alarmManager.set(AlarmManager.RTC_WAKEUP, endDateTrigger, senderEndDate);
 
 
-                                    Intent intent = new Intent(AddTerm.this, HomeScreen.class);
+                                    Intent intent = new Intent(AddTerm.this, TermsScreen.class);
                                     startActivity(intent);
                                 }
                             })

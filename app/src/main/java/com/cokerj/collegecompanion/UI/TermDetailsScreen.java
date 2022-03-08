@@ -1,8 +1,6 @@
 package com.cokerj.collegecompanion.UI;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,8 +8,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,7 +17,6 @@ import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -80,7 +75,7 @@ public class TermDetailsScreen extends AppCompatActivity {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             repo.delete(current);
-                            Intent intent = new Intent(TermDetailsScreen.this, HomeScreen.class);
+                            Intent intent = new Intent(TermDetailsScreen.this, TermsScreen.class);
                             startActivity(intent);
                         }
                     }).setNegativeButton("Cancel", new DialogInterface.OnClickListener(){

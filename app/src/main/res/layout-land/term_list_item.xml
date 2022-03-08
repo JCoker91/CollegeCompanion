@@ -13,7 +13,7 @@
     android:orientation="horizontal"
     android:padding="10dp"
     android:visibility="visible"
-    tools:showIn="@layout/activity_main"
+    tools:showIn="@layout/activity_terms_screen"
     tools:visibility="visible">
 
     <LinearLayout

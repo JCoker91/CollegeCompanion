@@ -13,19 +13,15 @@ import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
-public class HomeScreen extends AppCompatActivity {
+public class TermsScreen extends AppCompatActivity {
     public static int counter = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_terms_screen);
         RecyclerView recyclerView = findViewById(R.id.termRView);
         LinearLayout noTermsWarning = findViewById(R.id.noTermsWarning);
         Repository repo = new Repository(getApplication());
@@ -43,12 +39,12 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void addTerm(View view) {
-        Intent intent = new Intent(HomeScreen.this, AddTerm.class);
+        Intent intent = new Intent(TermsScreen.this, AddTerm.class);
         startActivity(intent);
     }
 
     public void viewTermDetails(View view) {
-        Intent intent = new Intent(HomeScreen.this, TermDetailsScreen.class);
+        Intent intent = new Intent(TermsScreen.this, TermDetailsScreen.class);
         startActivity(intent);
     }
 }

@@ -20,8 +20,6 @@ import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.R;
 
-import org.w3c.dom.Text;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -155,7 +153,7 @@ public class EditTerm extends AppCompatActivity {
                                     current.setStartDate(startDate);
                                     current.setEndDate(endDate);
                                     repo.update(current);
-                                    Intent intent = new Intent(EditTerm.this, HomeScreen.class);
+                                    Intent intent = new Intent(EditTerm.this, TermsScreen.class);
                                     startActivity(intent);
                                 }
                             })
