@@ -27,4 +27,7 @@ public interface TermDAO {
 
     @Query("SELECT * FROM terms WHERE termId = :termId LIMIT 1")
     Term getTermById(int termId);
+
+    @Query("SELECT * FROM terms WHERE instr(termTitle, :termTitle) ORDER BY termTitle ASC")
+    List<Term> getTermsByString(String termTitle);
 }

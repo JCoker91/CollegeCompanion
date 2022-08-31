@@ -21,6 +21,7 @@ public class Repository {
     final private CourseDAO mCourseDAO;
     final private NoteDAO mNoteDAO;
     private List<Term> mAllTerms;
+    private List<Term> mTitleTerms;
     private List<Course> mTermCourses;
     private List<Assessment> mCourseAssessments;
     private int mTermCount;
@@ -101,6 +102,16 @@ public class Repository {
         return mAllTerms;
     }
 
+    public List<Term> getTermsByString(String termTitle){
+        databaseExecutor.execute(() -> mTitleTerms = mTermDAO.getTermsByString(termTitle));
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mTitleTerms;
+    }
+
     public List<Course> getTermCourses(int termId){
         databaseExecutor.execute(()-> mTermCourses = mCourseDAO.getTermCourses(termId));
         try{
@@ -110,6 +121,7 @@ public class Repository {
         }
         return mTermCourses;
     }
+
 
     public int getCourseCount(int termId){
         databaseExecutor.execute(()-> mTermCount = mCourseDAO.getCourseCount(termId));
