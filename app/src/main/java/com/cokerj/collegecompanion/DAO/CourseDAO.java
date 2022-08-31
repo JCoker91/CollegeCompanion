@@ -33,4 +33,13 @@ public interface CourseDAO {
 
     @Query("DELETE FROM courses WHERE termId = :termId")
     void deleteCoursesByTermId(int termId);
+
+    @Query("SELECT * FROM courses")
+    List<Course> getAllCourses();
+
+    @Query("SELECT * FROM courses WHERE status = 'Completed'")
+    List<Course> getAllCompletedCourses();
+
+    @Query("SELECT * FROM courses WHERE status = 'In Progress'")
+    List<Course> getAllInProgressCourses();
 }

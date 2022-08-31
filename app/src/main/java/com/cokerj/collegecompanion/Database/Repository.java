@@ -22,6 +22,9 @@ public class Repository {
     final private NoteDAO mNoteDAO;
     private List<Term> mAllTerms;
     private List<Term> mTitleTerms;
+    private List<Course> mAllCourses;
+    private List<Course> mAllCompletedCourses;
+    private List<Course> mAllInProgressCourses;
     private List<Course> mTermCourses;
     private List<Assessment> mCourseAssessments;
     private int mTermCount;
@@ -121,7 +124,35 @@ public class Repository {
         }
         return mTermCourses;
     }
+    public List<Course> getAllCourses(){
+        databaseExecutor.execute(()-> mAllCourses = mCourseDAO.getAllCourses());
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mAllCourses;
+    }
 
+    public List<Course> getAllCompletedCourses(){
+        databaseExecutor.execute(()-> mAllCompletedCourses = mCourseDAO.getAllCompletedCourses());
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mAllCompletedCourses;
+    }
+
+    public List<Course> getAllInProgressCourses(){
+        databaseExecutor.execute(()-> mAllInProgressCourses = mCourseDAO.getAllInProgressCourses());
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mAllInProgressCourses;
+    }
 
     public int getCourseCount(int termId){
         databaseExecutor.execute(()-> mTermCount = mCourseDAO.getCourseCount(termId));
