@@ -90,6 +90,11 @@ public class TermsScreen extends AppCompatActivity {
 
     }
 
+    public void toReportsScreen(View view) {
+        Intent intent = new Intent(TermsScreen.this, AddTerm.class);
+        startActivity(intent);
+    }
+
     public void addTerm(View view) {
         Intent intent = new Intent(TermsScreen.this, AddTerm.class);
         startActivity(intent);
