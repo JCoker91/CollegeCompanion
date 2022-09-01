@@ -166,8 +166,8 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="#4CAF50"
-            android:text="Add\nCourse"
             android:onClick="addNewCourseButton"
+            android:text="Add\nCourse"
             android:textSize="12sp"
             android:textStyle="bold" />
 
