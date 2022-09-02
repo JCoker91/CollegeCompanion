@@ -173,7 +173,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="10sp"
-            android:text="No terms matching the search criteria.\nSearch criteria is case-sensitive."
+            android:text="No terms matching the search criteria."
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:visibility="invisible" />
