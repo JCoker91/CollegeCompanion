@@ -81,10 +81,45 @@ public class ReportsScreen extends AppCompatActivity {
         return tableRow;
     }
 
+    private TableRow createRowHeader(){
+        TableRow tableRow = new TableRow(this);
+        TextView courseHeader = new TextView(this);
+        TextView termHeader = new TextView(this);
+        TextView statusHeader = new TextView(this);
+
+        courseHeader.setText("Course");
+        termHeader.setText("Term");
+        statusHeader.setText("Status");
+
+        courseHeader.setPadding(10, 10, 10, 30);
+        courseHeader.setGravity(Gravity.CENTER);
+        courseHeader.setTextColor(Color.rgb(255, 255, 255));
+        termHeader.setPadding(10, 10, 10, 30);
+        termHeader.setGravity(Gravity.CENTER);
+        termHeader.setTextColor(Color.rgb(255, 255, 255));
+        statusHeader.setPadding(10, 10, 10, 30);
+        statusHeader.setGravity(Gravity.CENTER);
+        statusHeader.setTextColor(Color.rgb(255, 255, 255));
+
+        courseHeader.setTextSize(20);
+        termHeader.setTextSize(20);
+        statusHeader.setTextSize(20);
+
+
+
+        tableRow.addView(courseHeader);
+        tableRow.addView(termHeader);
+        tableRow.addView(statusHeader);
+        return tableRow;
+    }
+
     public void displayAllCourses(View view){
         TableLayout courseTable = findViewById(R.id.courseTable);
         TextView emptyReportsTextView = findViewById(R.id.emptyReportsTextView);
+        TextView reportTitle = findViewById(R.id.reportTitle);
+        TextView dateText = findViewById(R.id.dateText);
         courseTable.removeAllViews();
+        courseTable.addView(createRowHeader());
 
         Context context = view.getContext();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -97,12 +132,19 @@ public class ReportsScreen extends AppCompatActivity {
         Repository repo = new Repository(getApplication());
         List<Course> courses = repo.getAllCourses();
         List<Term> terms = repo.getAllTerms();
+        reportTitle.setText("All Courses");
         if (courses.isEmpty()) {
+            dateText.setText("");
             emptyReportsTextView.setVisibility(View.VISIBLE);
             emptyReportsTextView.setText("You have not created any courses yet.\nThis report is empty.");
             courseTable.setVisibility(View.INVISIBLE);
         }
         else{
+
+            java.util.Date date = new java.util.Date();
+            String dateTime = date.toString();
+            dateText.setText(dateTime);
+            System.out.println(date);
             emptyReportsTextView.setVisibility(View.INVISIBLE);
             courseTable.setVisibility(View.VISIBLE);
             for (Course course: courses){
@@ -111,4 +153,87 @@ public class ReportsScreen extends AppCompatActivity {
             }
         }
     }
+
+    public void displayCompletedCourses(View view){
+        TableLayout courseTable = findViewById(R.id.courseTable);
+        TextView emptyReportsTextView = findViewById(R.id.emptyReportsTextView);
+        TextView reportTitle = findViewById(R.id.reportTitle);
+        TextView dateText = findViewById(R.id.dateText);
+        courseTable.removeAllViews();
+        courseTable.addView(createRowHeader());
+
+        Context context = view.getContext();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+        View v = new View(this);
+        v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 1));
+        courseTable.addView(v);
+
+        Repository repo = new Repository(getApplication());
+        List<Course> courses = repo.getAllCompletedCourses();
+        List<Term> terms = repo.getAllTerms();
+        reportTitle.setText("Completed Courses");
+        if (courses.isEmpty()) {
+            dateText.setText("");
+            emptyReportsTextView.setVisibility(View.VISIBLE);
+            emptyReportsTextView.setText("You do not have any completed courses yet.\nThis report is empty.");
+            courseTable.setVisibility(View.INVISIBLE);
+        }
+        else{
+
+            java.util.Date date = new java.util.Date();
+            String dateTime = date.toString();
+            dateText.setText(dateTime);
+            System.out.println(date);
+            emptyReportsTextView.setVisibility(View.INVISIBLE);
+            courseTable.setVisibility(View.VISIBLE);
+            for (Course course: courses){
+                TableRow newRow = createTableRow(course, terms);
+                courseTable.addView(newRow);
+            }
+        }
+    }
+
+    public void displayInProgressCourses(View view){
+        TableLayout courseTable = findViewById(R.id.courseTable);
+        TextView emptyReportsTextView = findViewById(R.id.emptyReportsTextView);
+        TextView reportTitle = findViewById(R.id.reportTitle);
+        TextView dateText = findViewById(R.id.dateText);
+        courseTable.removeAllViews();
+        courseTable.addView(createRowHeader());
+
+        Context context = view.getContext();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+        View v = new View(this);
+        v.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, 1));
+        courseTable.addView(v);
+
+        Repository repo = new Repository(getApplication());
+        List<Course> courses = repo.getAllInProgressCourses();
+        List<Term> terms = repo.getAllTerms();
+        reportTitle.setText("Current Courses");
+        if (courses.isEmpty()) {
+            dateText.setText("");
+            emptyReportsTextView.setVisibility(View.VISIBLE);
+            emptyReportsTextView.setText("You do not have any current courses.\nThis report is empty.");
+            courseTable.setVisibility(View.INVISIBLE);
+        }
+        else{
+
+            java.util.Date date = new java.util.Date();
+            String dateTime = date.toString();
+            dateText.setText(dateTime);
+            System.out.println(date);
+            emptyReportsTextView.setVisibility(View.INVISIBLE);
+            courseTable.setVisibility(View.VISIBLE);
+            for (Course course: courses){
+                TableRow newRow = createTableRow(course, terms);
+                courseTable.addView(newRow);
+            }
+        }
+    }
+
 }

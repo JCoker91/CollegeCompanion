@@ -29,14 +29,22 @@
         tools:layout_editor_absoluteX="20dp">
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:id="@+id/reportTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Courses"
+            android:text="Course Reports"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,11 +61,23 @@
             android:id="@+id/emptyReportsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:lineSpacingExtra="10sp"
-            android:onClick="displayAllCourses"
             android:text="Click on a button to generate the associated report."
             android:textAlignment="center"
             android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout8">
 
         <TableLayout
             android:id="@+id/courseTable"
@@ -94,6 +114,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="#4CAF50"
+            android:onClick="displayCompletedCourses"
             android:text="Completed\nCourses"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -105,6 +126,7 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:backgroundTint="#F44336"
+            android:onClick="displayInProgressCourses"
             android:text="In Progress\nCourses"
             android:textSize="10sp"
             android:textStyle="bold" />
