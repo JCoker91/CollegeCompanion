@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:background="@color/alt_color"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -35,14 +35,34 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView9"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Don't give up!"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Don't give up!"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/reportsBtn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/red_primary"
+                    android:gravity="center|left"
+                    android:onClick="toLogInScreen"
+                    android:text="Log Out"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/reportsBtn"

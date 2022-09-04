@@ -30,6 +30,10 @@
             android:label="Reports"
             android:parentActivityName=".UI.TermsScreen" />
         <activity
+            android:name=".UI.CreateNewUser"
+            android:exported="false"
+            android:label="Create Account"/>
+        <activity
             android:name=".UI.EditNote"
             android:exported="false"
             android:label="Edit Note" />
@@ -89,8 +93,7 @@
         <activity
             android:name=".UI.TermsScreen"
             android:exported="false"
-            android:label="Terms"
-            android:parentActivityName=".UI.MainActivity"></activity>
+            android:label="Terms"></activity>
     </application>
 
 </manifest>

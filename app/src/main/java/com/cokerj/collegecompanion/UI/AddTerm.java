@@ -21,6 +21,7 @@ import android.widget.EditText;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
+import com.cokerj.collegecompanion.Entity.User;
 import com.cokerj.collegecompanion.R;
 
 import java.text.SimpleDateFormat;
@@ -125,6 +126,7 @@ public class AddTerm extends AppCompatActivity {
             alert.show();
         } else {
             try {
+                User loggedInUser = repo.getLoggedInUser();
                 String title = termTitle.getText().toString();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
                 LocalDate startDate = LocalDate.parse(startDateText.getText(), formatter);
@@ -146,7 +148,7 @@ public class AddTerm extends AppCompatActivity {
                             .setTitle("Confirm")
                             .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Term newTerm = new Term(title, startDate, endDate);
+                                    Term newTerm = new Term(title, startDate, endDate, loggedInUser.getUserId());
                                     repo.insert(newTerm);
                                     String myFormat = "M-d-yyyy";
                                     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);

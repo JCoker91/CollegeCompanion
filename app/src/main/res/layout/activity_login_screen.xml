@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_dark"
-    android:padding="20dp"
-    tools:context=".UI.MainActivity">
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,18 +23,18 @@
             android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcom to the College\nCompanion App"
+            android:layout_marginBottom="20dp"
+            android:text="Create an Account"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/loginUserNameField"
+            android:id="@+id/createUserNameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="20dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@color/white"
@@ -49,8 +48,17 @@
             android:textColorHint="#757575"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/invalidUsernameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username not available"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:visibility="invisible" />
+
         <EditText
-            android:id="@+id/loginUserPasswordField"
+            android:id="@+id/createPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -68,28 +76,55 @@
             android:textColorHint="#757575"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/incorrectLoginTextView"
+        <EditText
+            android:id="@+id/confirmPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Incorrect Username or Password"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="text|textPassword"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textColorHint="#757575"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/passwordNotMatchingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Passwords do not match"
             android:textAlignment="center"
-            android:textColor="@color/red_primary"
-            android:textSize="14sp"
-            android:visibility="invisible"
-            tools:visibility="invisible" />
+            android:textColor="@color/design_default_color_error"
+            android:visibility="invisible" />
 
         <Button
-            android:id="@+id/button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#4CAF50"
-            android:onClick="enterApp"
-            android:text="Sign In"
+            android:backgroundTint="@color/orange_primary"
+            android:onClick="createUser"
+            android:text="Create Account"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/confirmUserCreateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account successfully created"
+            android:textAlignment="center"
+            android:textColor="@color/green_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
         <View
-            android:id="@+id/divider"
+            android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
@@ -97,11 +132,12 @@
             android:background="?attr/panelBackground" />
 
         <Button
+            android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange_primary"
-            android:onClick="toCreateUserScreen"
-            android:text="Create an Account"
+            android:backgroundTint="#4CAF50"
+            android:onClick="toSignInScreen"
+            android:text="Sign In"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

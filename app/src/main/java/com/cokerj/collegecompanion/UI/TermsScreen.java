@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
+import com.cokerj.collegecompanion.Entity.User;
 import com.cokerj.collegecompanion.R;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 public class TermsScreen extends AppCompatActivity {
     public static int counter = 1;
     EditText searchBar;
+    User loggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,12 @@ public class TermsScreen extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.termRView);
         TextView noTermsWarning = findViewById(R.id.noTermsWarningText);
         Repository repo = new Repository(getApplication());
-        List<Term> terms = repo.getAllTerms();
-        searchBar = findViewById(R.id.inputSearchBar);
 
+        searchBar = findViewById(R.id.inputSearchBar);
+        loggedInUser = repo.getLoggedInUser();
+        List<Term> terms = repo.getAllTerms(loggedInUser.getUserId());
+        TextView welcomeText = findViewById(R.id.textView31);
+        welcomeText.setText("Hello, " + loggedInUser.getUserName());
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -68,7 +73,7 @@ public class TermsScreen extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.termRView);
         Repository repo = new Repository(getApplication());
         String titleString = searchBar.getText().toString();
-        List<Term> terms = repo.getTermsByString(titleString);
+        List<Term> terms = repo.getTermsByString(titleString, loggedInUser.getUserId());
 
         if (terms.isEmpty()) {
             noTermsWarning.setVisibility(View.INVISIBLE);
@@ -83,15 +88,15 @@ public class TermsScreen extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
         }
-
-
-
-
-
     }
 
     public void toReportsScreen(View view) {
         Intent intent = new Intent(TermsScreen.this, ReportsScreen.class);
+        startActivity(intent);
+    }
+
+    public void toLogInScreen(View view){
+        Intent intent = new Intent(TermsScreen.this, MainActivity.class);
         startActivity(intent);
     }
 

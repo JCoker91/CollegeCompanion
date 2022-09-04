@@ -35,7 +35,7 @@
             android:text="Course Reports"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView

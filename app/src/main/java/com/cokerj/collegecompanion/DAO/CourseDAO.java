@@ -22,6 +22,7 @@ public interface CourseDAO {
     @Delete
     void delete(Course course);
 
+
     @Query("SELECT * FROM courses WHERE termId = :termId ORDER BY courseId ASC")
     List<Course> getTermCourses(int termId);
 
@@ -34,12 +35,12 @@ public interface CourseDAO {
     @Query("DELETE FROM courses WHERE termId = :termId")
     void deleteCoursesByTermId(int termId);
 
-    @Query("SELECT * FROM courses")
-    List<Course> getAllCourses();
+    @Query("SELECT * FROM courses c INNER JOIN terms t ON c.termId = t.termId WHERE t.userId = :userId")
+    List<Course> getAllCourses(int userId);
 
-    @Query("SELECT * FROM courses WHERE status = 'Completed'")
-    List<Course> getAllCompletedCourses();
+    @Query("SELECT * FROM courses c INNER JOIN terms t ON c.termId = t.termId WHERE t.userId = :userId AND status = 'Completed'")
+    List<Course> getAllCompletedCourses(int userId);
 
-    @Query("SELECT * FROM courses WHERE status = 'In Progress'")
-    List<Course> getAllInProgressCourses();
+    @Query("SELECT * FROM courses c INNER JOIN terms t ON c.termId = t.termId WHERE t.userId = :userId AND status = 'In Progress'")
+    List<Course> getAllInProgressCourses(int userId);
 }

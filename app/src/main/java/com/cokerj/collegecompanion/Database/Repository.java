@@ -6,10 +6,12 @@ import com.cokerj.collegecompanion.DAO.AssessmentDAO;
 import com.cokerj.collegecompanion.DAO.CourseDAO;
 import com.cokerj.collegecompanion.DAO.NoteDAO;
 import com.cokerj.collegecompanion.DAO.TermDAO;
+import com.cokerj.collegecompanion.DAO.UserDAO;
 import com.cokerj.collegecompanion.Entity.Assessment;
 import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Note;
 import com.cokerj.collegecompanion.Entity.Term;
+import com.cokerj.collegecompanion.Entity.User;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -20,6 +22,10 @@ public class Repository {
     final private TermDAO mTermDAO;
     final private CourseDAO mCourseDAO;
     final private NoteDAO mNoteDAO;
+    final private UserDAO mUserDAO;
+    private User mUserLogIn;
+    private User mloggedInUser;
+    private User mUserNameAvailable;
     private List<Term> mAllTerms;
     private List<Term> mTitleTerms;
     private List<Course> mAllCourses;
@@ -43,6 +49,7 @@ public class Repository {
         mTermDAO = db.termDAO();
         mCourseDAO = db.courseDAO();
         mNoteDAO = db.noteDAO();
+        mUserDAO = db.userDAO();
     }
 
     public void insert(Term term){
@@ -52,7 +59,9 @@ public class Repository {
     public void insert(Course course){
         databaseExecutor.execute(()-> mCourseDAO.insert(course));
     }
-
+    public void insert(User user){
+        databaseExecutor.execute(()-> mUserDAO.insert(user));
+    }
     public void insert(Assessment assessment){
         databaseExecutor.execute(()-> mAssessmentDAO.insert(assessment));
     }
@@ -91,12 +100,22 @@ public class Repository {
         databaseExecutor.execute(()-> mNoteDAO.delete(note));
     }
 
+    public void logOutUser(){databaseExecutor.execute(()-> mUserDAO.logOutUser());}
     public void deleteCoursesByTermId(int termId){
         databaseExecutor.execute(()-> mCourseDAO.deleteCoursesByTermId(termId));
     }
-
-    public List<Term> getAllTerms(){
-        databaseExecutor.execute(()-> mAllTerms = mTermDAO.getAllTerms());
+    public void logInUser(int userId){databaseExecutor.execute(()-> mUserDAO.logInUser(userId));}
+    public User getLoggedInUser(){
+        databaseExecutor.execute(()-> mloggedInUser = mUserDAO.getLoggedInUser());
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mloggedInUser;
+    }
+    public List<Term> getAllTerms(int userId){
+        databaseExecutor.execute(()-> mAllTerms = mTermDAO.getAllTerms(userId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -105,8 +124,8 @@ public class Repository {
         return mAllTerms;
     }
 
-    public List<Term> getTermsByString(String termTitle){
-        databaseExecutor.execute(() -> mTitleTerms = mTermDAO.getTermsByString(termTitle));
+    public List<Term> getTermsByString(String termTitle, int userId){
+        databaseExecutor.execute(() -> mTitleTerms = mTermDAO.getTermsByString(termTitle, userId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -124,8 +143,29 @@ public class Repository {
         }
         return mTermCourses;
     }
-    public List<Course> getAllCourses(){
-        databaseExecutor.execute(()-> mAllCourses = mCourseDAO.getAllCourses());
+
+    public User checkUserNameAvailability(String userName){
+        databaseExecutor.execute(()-> mUserNameAvailable = mUserDAO.checkUserNameAvailability(userName));
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mUserNameAvailable;
+    }
+
+    public User testLogIn(String userName, String userPassword){
+        databaseExecutor.execute(()-> mUserLogIn = mUserDAO.testLogIn(userName,userPassword));
+        try{
+            Thread.sleep(200);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mUserLogIn;
+    }
+
+    public List<Course> getAllCourses(int userId){
+        databaseExecutor.execute(()-> mAllCourses = mCourseDAO.getAllCourses(userId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -134,8 +174,8 @@ public class Repository {
         return mAllCourses;
     }
 
-    public List<Course> getAllCompletedCourses(){
-        databaseExecutor.execute(()-> mAllCompletedCourses = mCourseDAO.getAllCompletedCourses());
+    public List<Course> getAllCompletedCourses(int userId){
+        databaseExecutor.execute(()-> mAllCompletedCourses = mCourseDAO.getAllCompletedCourses(userId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){
@@ -144,8 +184,8 @@ public class Repository {
         return mAllCompletedCourses;
     }
 
-    public List<Course> getAllInProgressCourses(){
-        databaseExecutor.execute(()-> mAllInProgressCourses = mCourseDAO.getAllInProgressCourses());
+    public List<Course> getAllInProgressCourses(int userId){
+        databaseExecutor.execute(()-> mAllInProgressCourses = mCourseDAO.getAllInProgressCourses(userId));
         try{
             Thread.sleep(200);
         }catch (InterruptedException e){

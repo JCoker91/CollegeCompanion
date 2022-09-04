@@ -17,16 +17,19 @@ import android.widget.TextView;
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Term;
+import com.cokerj.collegecompanion.Entity.User;
 import com.cokerj.collegecompanion.R;
 
 import java.util.List;
 
 public class ReportsScreen extends AppCompatActivity {
-
+    User loggedInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Repository repo = new Repository(getApplication());
+        loggedInUser = repo.getLoggedInUser();
         setContentView(R.layout.activity_reports_screen);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -130,8 +133,8 @@ public class ReportsScreen extends AppCompatActivity {
         courseTable.addView(v);
 
         Repository repo = new Repository(getApplication());
-        List<Course> courses = repo.getAllCourses();
-        List<Term> terms = repo.getAllTerms();
+        List<Course> courses = repo.getAllCourses(loggedInUser.getUserId());
+        List<Term> terms = repo.getAllTerms(loggedInUser.getUserId());
         reportTitle.setText("All Courses");
         if (courses.isEmpty()) {
             dateText.setText("");
@@ -171,8 +174,8 @@ public class ReportsScreen extends AppCompatActivity {
         courseTable.addView(v);
 
         Repository repo = new Repository(getApplication());
-        List<Course> courses = repo.getAllCompletedCourses();
-        List<Term> terms = repo.getAllTerms();
+        List<Course> courses = repo.getAllCompletedCourses(loggedInUser.getUserId());
+        List<Term> terms = repo.getAllTerms(loggedInUser.getUserId());
         reportTitle.setText("Completed Courses");
         if (courses.isEmpty()) {
             dateText.setText("");
@@ -212,8 +215,8 @@ public class ReportsScreen extends AppCompatActivity {
         courseTable.addView(v);
 
         Repository repo = new Repository(getApplication());
-        List<Course> courses = repo.getAllInProgressCourses();
-        List<Term> terms = repo.getAllTerms();
+        List<Course> courses = repo.getAllInProgressCourses(loggedInUser.getUserId());
+        List<Term> terms = repo.getAllTerms(loggedInUser.getUserId());
         reportTitle.setText("Current Courses");
         if (courses.isEmpty()) {
             dateText.setText("");

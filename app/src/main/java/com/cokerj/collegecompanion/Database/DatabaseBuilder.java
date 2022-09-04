@@ -10,17 +10,20 @@ import com.cokerj.collegecompanion.DAO.AssessmentDAO;
 import com.cokerj.collegecompanion.DAO.CourseDAO;
 import com.cokerj.collegecompanion.DAO.NoteDAO;
 import com.cokerj.collegecompanion.DAO.TermDAO;
+import com.cokerj.collegecompanion.DAO.UserDAO;
 import com.cokerj.collegecompanion.Entity.Assessment;
 import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Note;
 import com.cokerj.collegecompanion.Entity.Term;
+import com.cokerj.collegecompanion.Entity.User;
 
-@Database(entities = {Assessment.class, Course.class, Term.class, Note.class}, version = 22, exportSchema = false)
+@Database(entities = {Assessment.class, Course.class, Term.class, Note.class, User.class}, version = 24, exportSchema = false)
 public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract NoteDAO noteDAO();
+    public abstract UserDAO userDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
 
