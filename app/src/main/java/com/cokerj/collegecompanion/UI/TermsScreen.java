@@ -10,12 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.Entity.User;
+import com.cokerj.collegecompanion.MainActivity;
 import com.cokerj.collegecompanion.R;
 
 import java.util.List;

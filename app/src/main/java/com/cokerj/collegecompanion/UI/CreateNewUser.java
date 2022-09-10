@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import com.cokerj.collegecompanion.Utility.UtilityFunctions;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.User;
+import com.cokerj.collegecompanion.MainActivity;
 import com.cokerj.collegecompanion.R;
+
 
 
 public class CreateNewUser extends AppCompatActivity {
@@ -70,6 +73,7 @@ public class CreateNewUser extends AppCompatActivity {
         });
     }
 
+
     public void toSignInScreen(View view) {
         Intent intent = new Intent(CreateNewUser.this, MainActivity.class);
         startActivity(intent);
@@ -95,16 +99,23 @@ public class CreateNewUser extends AppCompatActivity {
             }else {
                 boolean passwordMatches = password.equals(confirmPassword);
                 if (!passwordMatches){
+                    passwordNotMatchingTextView.setText("Passwords do not match.");
                     passwordNotMatchingTextView.setVisibility(View.VISIBLE);
                 }else{
+                    if (new UtilityFunctions().validatePassword(password)){
                     User newUser = new User(userName, password);
                     repo.insert(newUser);
                     createUserNameField.setText("");
                     createPasswordField.setText("");
                     confirmPasswordField.setText("");
                     confirmUserCreateTextView.setVisibility(View.VISIBLE);
+                    } else{
+                        passwordNotMatchingTextView.setText("Password must be at least 8 characters long.");
+                        passwordNotMatchingTextView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         }
     }
 }
+

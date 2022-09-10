@@ -11,7 +11,7 @@
         android:theme="@style/Theme.CollegeCompanion">
 
         <activity
-            android:name=".UI.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

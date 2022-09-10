@@ -3,6 +3,8 @@ package com.cokerj.collegecompanion.Entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.security.KeyStore;
+
 @Entity(tableName = "users")
 public class User {
 
@@ -32,6 +34,10 @@ public class User {
         return userName;
     }
 
+    public boolean testLogin(String userName, String password){
+        return this.getUserName().equals(userName) && this.getUserPassword().equals(password);
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -39,6 +45,7 @@ public class User {
     public void setUserPassword(String userPassword){
         this.userPassword = userPassword;
     }
+
     public String getUserPassword(){
         return userPassword;
     }

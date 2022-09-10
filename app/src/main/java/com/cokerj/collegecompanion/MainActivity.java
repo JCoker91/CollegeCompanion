@@ -1,4 +1,4 @@
-package com.cokerj.collegecompanion.UI;
+package com.cokerj.collegecompanion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.cokerj.collegecompanion.Database.Repository;
 import com.cokerj.collegecompanion.Entity.User;
-import com.cokerj.collegecompanion.R;
+import com.cokerj.collegecompanion.UI.CreateNewUser;
+import com.cokerj.collegecompanion.UI.TermsScreen;
 
 public class MainActivity extends AppCompatActivity {
     Repository repo;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
     public void toCreateUserScreen(View view){
         Intent intent = new Intent(MainActivity.this, CreateNewUser.class);
