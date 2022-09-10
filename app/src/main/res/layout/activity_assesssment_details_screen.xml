@@ -40,6 +40,30 @@
                 android:paddingVertical="5dp">
 
                 <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Type:"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/assessmentDetailsType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
                     android:id="@+id/textView14"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
@@ -83,26 +107,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="160dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Type:"
-                    android:textColor="@android:color/white" />
+                    android:text="Type Description:"
+                    android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/assessmentDetailsType"
+                    android:id="@+id/typeDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="Type Description"
                     android:textColor="@android:color/white" />
-
             </LinearLayout>
 
         </LinearLayout>

@@ -27,6 +27,7 @@ public class AssessmentDetailsScreen extends AppCompatActivity {
     TextView assessmentEndDate;
     TextView assessmentType;
     TextView assessmentDescription;
+    TextView assessmentTypeDescription;
 
 
     @Override
@@ -37,10 +38,11 @@ public class AssessmentDetailsScreen extends AppCompatActivity {
         current = repo.getAssessmentById(getIntent().getIntExtra("assessmentId", 0));
         assessmentTitle = findViewById(R.id.assessmentDetailsTitle);
         assessmentStartDate = findViewById(R.id.assessmentDetailsStartDate);
+        assessmentTypeDescription = findViewById(R.id.typeDescription);
         assessmentEndDate = findViewById(R.id.assessmentDetailsEndDate);
         assessmentType = findViewById(R.id.assessmentDetailsType);
         assessmentDescription = findViewById(R.id.assessmentDetailsDescription);
-
+        assessmentTypeDescription.setText(current.getAssessmentTypeDescription());
         assessmentTitle.setText(current.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy");
         assessmentStartDate.setText(current.getStartDate().format(formatter).toString());

@@ -10,9 +10,13 @@ import com.cokerj.collegecompanion.DAO.UserDAO;
 import com.cokerj.collegecompanion.Entity.Assessment;
 import com.cokerj.collegecompanion.Entity.Course;
 import com.cokerj.collegecompanion.Entity.Note;
+import com.cokerj.collegecompanion.Entity.ObjectiveAssessment;
+import com.cokerj.collegecompanion.Entity.PerformanceAssessment;
 import com.cokerj.collegecompanion.Entity.Term;
 import com.cokerj.collegecompanion.Entity.User;
 
+import java.net.PasswordAuthentication;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -228,7 +232,15 @@ public class Repository {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        return mAssessment;
+        Assessment returnAssessment;
+        if (mAssessment.getType().equals("Objective")){
+            returnAssessment = new ObjectiveAssessment(mAssessment.getAssessment_id(), mAssessment.getName(),mAssessment.getStartDate(), mAssessment.getEndDate(),mAssessment.getDescription(),mAssessment.getCourseId());
+        } else if (mAssessment.getType().equals("Performance")){
+            returnAssessment = new PerformanceAssessment(mAssessment.getAssessment_id(), mAssessment.getName(),mAssessment.getStartDate(), mAssessment.getEndDate(),mAssessment.getDescription(),mAssessment.getCourseId());
+        } else {
+            returnAssessment = mAssessment;
+        }
+        return returnAssessment;
     }
 
     public Term getTermById(int termId){

@@ -104,4 +104,7 @@ public class Assessment {
         this.description = description;
         this.courseId = courseId;
     }
+    public String getAssessmentTypeDescription(){
+        return "None";
+    }
 }
